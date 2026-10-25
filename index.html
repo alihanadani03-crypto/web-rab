@@ -1,704 +1,340 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" data-theme="light">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>RAB Konstruksi</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aplikasi RAB Konstruksi & Interior Pro</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f4f5f3;--card:#fff;--ink:#16222e;--mute:#5d6b78;--line:#d5dad8;--navy:#16324a;--navy-ink:#fff;--acc:#f2b705;--acc-ink:#16222e;--soft:#eaeeec;--danger:#b3261e;
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10171e;--card:#18222c;--ink:#e6ecf0;--mute:#93a1ad;--line:#2b3946;--navy:#0b1218;--navy-ink:#e6ecf0;--soft:#1f2b36;--danger:#ff8a80}}
-:root[data-theme="dark"]{--bg:#10171e;--card:#18222c;--ink:#e6ecf0;--mute:#93a1ad;--line:#2b3946;--navy:#0b1218;--navy-ink:#e6ecf0;--soft:#1f2b36;--danger:#ff8a80}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Barlow,system-ui,sans-serif}
-h1,h2{font-family:"Barlow Condensed",Impact,sans-serif;font-weight:700;margin:0}
-header{background:var(--navy);color:var(--navy-ink);border-bottom:6px solid var(--acc)}
-.wrap{max-width:1200px;margin:0 auto;padding:0 16px}
-header .wrap{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;padding-top:18px;padding-bottom:16px}
-header h1{font-size:30px;line-height:1.1}header p{margin:2px 0 0;color:#aab8c4;font-size:13px}
-button{font:inherit;cursor:pointer;border-radius:4px;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:8px 14px;font-weight:600}
-:focus-visible{outline:3px solid var(--acc);outline-offset:1px}
-.btn-acc{background:var(--acc);color:var(--acc-ink);border-color:var(--acc)}
-.btn-drive{background:#1e8e3e;color:#fff;border-color:#1e8e3e}
-.btn-ghost{background:transparent;color:var(--navy-ink);border-color:#52667a}
-section{background:var(--card);border:1px solid var(--line);border-radius:6px;margin:18px 0;padding:16px}
-section>h2{font-size:21px;margin-bottom:12px}
-.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
-label{display:block;font-size:12.5px;color:var(--mute);font-weight:600;margin-bottom:3px}
-input,select,textarea{width:100%;font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:4px;padding:7px 9px}
-summary{cursor:pointer;font-weight:600}details p{margin:8px 0 0;color:var(--mute);font-size:14px}details code{background:var(--soft);padding:1px 5px;border-radius:3px;color:var(--ink)}
-.tablebox{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--card)}
-table{width:100%;border-collapse:collapse;min-width:1000px}
-th{background:var(--navy);color:var(--navy-ink);text-align:left;font-size:13px;padding:9px 10px;font-weight:600}
-td{padding:8px 10px;vertical-align:top}
-.r{text-align:right}.c{text-align:center}
-tr.cat td{background:var(--soft);font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:17px;border-top:2px solid var(--acc)}
-tr.sub td{background:var(--soft);font-weight:600;border-top:1px solid var(--line)}
-tr.job td{border-top:2px solid var(--line)}tr.det td{padding:2px 10px 12px}
-.vol{font-weight:700;white-space:nowrap;padding-top:14px}
-td.num{padding-top:14px}
-td input.price{text-align:right}
-tr.disc td{background:var(--navy);color:var(--navy-ink);font-family:"Barlow Condensed",sans-serif;font-size:19px;font-weight:700;border-top:0}tr.sg td{font-weight:600;font-style:italic;color:var(--mute);padding-top:10px}.mk{font-size:13px;padding:3px 6px;margin-top:4px}.pp{display:none}.cv{width:100%;height:auto;display:block}.cv text{fill:var(--mute);font-size:11px}.cv .g{stroke:var(--line);stroke-width:1}.cv .bar{fill:var(--mute);fill-opacity:.35}.cv .ln2{fill:none;stroke:var(--acc);stroke-width:3;stroke-linejoin:round}.tag{display:inline-block;margin-top:4px;background:var(--acc);color:var(--acc-ink);font-size:12px;font-weight:700;padding:1px 8px;border-radius:3px}
-.ln{display:grid;grid-template-columns:36px 74px 1.1fr 1.2fr 150px 64px 84px 30px;gap:6px;align-items:center;margin-bottom:4px}
-.ln.hd{grid-template-columns:36px 1fr 30px;margin-top:8px}.ln.hd input{font-weight:700}
-.ln input{padding:4px 6px;font-size:13.5px}
-.lno{font-size:12px;color:var(--mute);text-align:right}
-.rs{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.err{color:var(--danger);font-weight:500;font-size:12px}
-.vr{display:flex;gap:4px;align-items:center;font-size:12px;margin:0;white-space:nowrap}.vr input{width:auto}
-.tl{display:flex;gap:8px;margin:8px 0 0 42px}.tl button,.tl select{padding:4px 10px;font-size:13px;width:auto}
-.del{color:var(--danger);padding:2px 8px}
-.sum{display:grid;grid-template-columns:1fr 340px;gap:24px;padding:16px}
-.row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:5px 0}
-.pct{width:70px;text-align:right}
-.total{background:var(--navy);color:var(--navy-ink);border-left:8px solid var(--acc);padding:12px 14px;border-radius:4px;margin-top:8px;font-family:"Barlow Condensed",sans-serif;font-size:22px;font-weight:700}
-.fx{font-size:12.5px;color:var(--mute)}.empty{padding:30px;text-align:center;color:var(--mute)}
-.pr{display:none}
-#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--navy);color:var(--navy-ink);padding:10px 16px;border-radius:4px;border-left:5px solid var(--acc);opacity:0;pointer-events:none;transition:opacity .2s}
-#toast.on{opacity:1}
-.sign{display:none;grid-template-columns:1fr 1fr;gap:40px;text-align:center;margin-top:40px}.sign div{padding-top:70px}
-@media (max-width:760px){.sum{grid-template-columns:1fr}}
+:root {
+  --bg: #f4f5f3; --card: #ffffff; --ink: #16222e; --mute: #5d6b78; --line: #d5dad8;
+  --navy: #16324a; --navy-ink: #ffffff; --acc: #f2b705; --acc-ink: #16222e; --soft: #eaeeec; --danger: #b3261e; --success: #2e7d32;
+}
+[data-theme="dark"] {
+  --bg: #10171e; --card: #18222c; --ink: #e6ecf0; --mute: #93a1ad; --line: #2b3946;
+  --navy: #0b1218; --navy-ink: #e6ecf0; --soft: #1f2b36; --danger: #ff8a80; --success: #81c784;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.5 Barlow, system-ui, sans-serif; padding-bottom: 60px; transition: background 0.3s, color 0.3s; }
+header { background: var(--navy); color: var(--navy-ink); border-bottom: 5px solid var(--acc); padding: 16px 0; }
+.wrap { max-width: 1380px; margin: 0 auto; padding: 0 16px; }
+.header-flex { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; }
+h1 { font-family: "Barlow Condensed", sans-serif; font-size: 26px; margin: 0; }
+.btn-group { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+button { font: inherit; cursor: pointer; border: none; border-radius: 4px; padding: 7px 12px; font-weight: 600; transition: all 0.2s; }
+button:hover { opacity: 0.9; transform: translateY(-1px); }
+.btn-primary { background: var(--acc); color: var(--acc-ink); }
+.btn-success { background: var(--success); color: #fff; }
+.btn-danger { background: var(--danger); color: #fff; }
+.btn-secondary { background: var(--soft); color: var(--ink); border: 1px solid var(--line); }
+.btn-sm { padding: 3px 8px; font-size: 12px; }
 
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;z-index:50;padding:16px}
-.modal.on{display:flex}
-.mbox{background:var(--card);color:var(--ink);border:1px solid var(--line);border-top:6px solid var(--acc);border-radius:6px;max-width:440px;width:100%;padding:18px}
-.mbox h2{font-size:24px;margin-bottom:4px}.mbox p{margin:0 0 12px;color:var(--mute);font-size:14px}
-.mbox button.opt{display:block;width:100%;text-align:left;margin-bottom:8px;padding:10px 12px}
-.mbox button.opt small{display:block;font-weight:400;color:var(--mute)}
-@page{size:A4 portrait;margin:12mm}
-.pv{display:none}
-@media print{
- :root{--bg:#fff;--card:#fff;--ink:#000;--soft:#eee;--line:#999;--mute:#333}
- .btns,.np,.del{display:none!important}
- header{background:#fff;color:#000;border-bottom:3px solid #000}header p{color:#333}
- section{border:0;padding:0;margin:10px 0}
- input,select,textarea{border:0;padding:0;background:transparent;appearance:none;-webkit-appearance:none}
- th,tr.cat td,tr.sub td,tr.disc td,.total{-webkit-print-color-adjust:exact;print-color-adjust:exact}
- th{background:#222;color:#fff}.total{background:#222;color:#fff}.tablebox{border:0;overflow:visible}table{min-width:0}
- .pr{display:inline}.sign{display:grid;break-inside:avoid}tr{break-inside:avoid}.pp{display:block!important;margin-bottom:10px}
- .modal,#toast{display:none!important}
- html,body,input,select,textarea,button,th,td{font-family:Arial,Helvetica,sans-serif!important}
- body{font-size:12pt;line-height:1.35}
- h1{font-size:22pt}h2,.pp h2{font-size:16pt!important}header p{font-size:12pt}
- th{font-size:12pt;padding:4px 5px}td{padding:4px 5px;font-size:12pt}
- table{width:100%;table-layout:auto}
- tr.cat td,tr.disc td,.total{font-family:Arial,Helvetica,sans-serif!important;font-size:13pt}
- .s-rincian th{width:auto!important}.s-rincian th:nth-child(2){width:38%!important}
- .s-rincian td,.s-rincian th,.s-rekap td,.s-rekap th{word-break:break-word;overflow-wrap:anywhere}
- .r{white-space:nowrap}.s-rincian td.r{white-space:normal}
- .rs{white-space:normal!important;overflow:visible!important;text-overflow:clip!important}
- .ln{display:flex!important;flex-wrap:wrap;gap:2px 10px;margin-bottom:3px}
- .ln>*{flex:0 1 auto;min-width:0}.lno{text-align:left}
- .mk,.fx,.err,.vr,.tl,label{font-size:12pt}
- .pv{display:inline;white-space:normal;word-break:break-word;overflow-wrap:anywhere}
- textarea+.pv{display:block;white-space:pre-wrap}
- .pvh{display:none!important}
- svg text,.cv text{font-size:10pt}
- .nonotes #notesBox{display:none}
- .pm-rekap .s-rincian,.pm-rekap .s-jad,.pm-rekap .s-kurva,.pm-rekap .s-term{display:none!important}
- .ph-proj .s-proj,.ph-rincian .s-rincian,.ph-rekap .s-rekap,.ph-zrek .s-zrek,.ph-jad .s-jad,.ph-kurva .s-kurva,.ph-mat .s-mat,.ph-tot .s-tot,.ph-term .s-term,.ph-sign .s-sign{display:none!important}
- .ps-mat .s-mat{display:block!important}
- .pm-material main>*:not(.s-proj):not(.s-mat):not(.pp){display:none!important}
- .pm-material .s-mat{display:block!important}
- .pm-catatan main>*:not(.s-proj):not(.s-tot):not(.s-term):not(.s-sign):not(.pp){display:none!important}
- .pm-rincian .s-rekap,.pm-rincian .s-zrek,.pm-rincian .s-jad,.pm-rincian .s-kurva,.pm-rincian .s-term,.pm-rincian .s-tot,.pm-rincian .s-sign{display:none!important}
+.container { max-width: 1380px; margin: 20px auto; padding: 0 16px; display: flex; flex-direction: column; gap: 20px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.03); }
+h2 { font-family: "Barlow Condensed", sans-serif; font-size: 20px; margin-top: 0; margin-bottom: 14px; border-bottom: 2px solid var(--soft); padding-bottom: 6px; color: var(--navy); }
+
+.grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.form-group { margin-bottom: 8px; }
+label { display: block; font-weight: 600; font-size: 12px; margin-bottom: 4px; color: var(--mute); }
+input, select, textarea { width: 100%; padding: 7px 10px; border: 1px solid var(--line); border-radius: 4px; background: var(--card); color: var(--ink); font: inherit; }
+input:focus, select:focus, textarea:focus { outline: 2px solid var(--navy); }
+
+/* Item Row Styling */
+.item-box { border: 1px solid var(--line); border-radius: 6px; padding: 14px; margin-bottom: 16px; background: var(--card); }
+.item-header { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; margin-bottom: 10px; background: var(--soft); padding: 10px; border-radius: 6px; }
+.item-header-inputs { display: flex; flex-wrap: wrap; gap: 8px; flex: 1; align-items: center; }
+
+.sub-calc-box { margin-top: 10px; padding: 10px 14px; background: var(--bg); border-left: 4px solid var(--navy); border-radius: 4px; }
+.calc-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.calc-code { font-weight: bold; width: 30px; font-size: 12px; color: var(--mute); }
+.calc-label { width: 140px; }
+.calc-val { width: 100px; }
+.calc-res { font-weight: bold; min-width: 80px; text-align: right; font-size: 13px; }
+
+/* Tanda Tangan Section */
+.sign-section { display: none; margin-top: 30px; justify-content: space-between; text-align: center; page-break-inside: avoid; }
+.sign-box { width: 220px; }
+.sign-line { border-bottom: 1px solid var(--ink); height: 70px; margin-top: 10px; }
+
+@media print {
+  @page { size: A4 landscape; margin: 1cm; }
+  body { background: #fff !important; color: #000 !important; }
+  .no-print, button, .modal-overlay { display: none !important; }
+  .card, .item-box { border: none !important; box-shadow: none !important; padding: 0 !important; margin-bottom: 10px; }
+  .sign-section { display: flex !important; }
+  input, select, textarea { border: none !important; background: transparent !important; padding: 0 !important; color: #000 !important; }
 }
 </style>
 </head>
 <body>
-<header><div class="wrap">
- <div><h1>RAB Konstruksi</h1><p>Rincian perhitungan volume bebas, seperti lembar hitung</p></div>
- <div class="btns" style="display:flex;gap:8px">
-  <button class="btn-ghost" onclick="manualSave()">Simpan Data</button>
-  <button class="btn-ghost" onclick="newRab()">Buat Baru</button>
-  <button class="btn-ghost" onclick="$('fileIn').click()">Buka Berkas</button>
-  <button class="btn-drive" onclick="openDrive()">Google Drive</button>
-  <button class="btn-acc" onclick="openPrint()">Cetak / Simpan PDF</button>
-  <input type="file" id="fileIn" accept=".json,application/json" style="display:none" onchange="openFile(this)">
- </div>
-</div></header>
 
-<main class="wrap">
-<div class="pp"><h2 style="font-size:26px">PENAWARAN HARGA PEKERJAAN</h2><p id="ppInfo" style="margin:4px 0 0"></p></div>
-<section class="s-proj">
- <h2>Data proyek</h2>
- <div class="grid">
-  <div><label for="docNo">No. dokumen</label><input id="docNo"></div>
-  <div><label for="title">Nama proyek</label><input id="title"></div>
-  <div><label for="client">Pemilik proyek</label><input id="client"></div>
-  <div><label for="ptype">Jenis proyek</label><select id="ptype" onchange="ptypeChg()"><option value="baru">Bangun baru</option><option value="reno">Renovasi / perluasan</option></select></div>
-  <div><label for="flr">Jumlah lantai</label><input id="flr" type="number" min="1" max="60" step="1" onchange="floorsChg()"></div>
-  <div><label for="prov">Provinsi</label><select id="prov"></select></div>
-  <div><label for="city">Kota / kabupaten</label><input id="city" list="cityList" placeholder="Palembang"><datalist id="cityList"></datalist></div>
-  <div style="grid-column:1/-1"><label for="loc">Alamat lengkap</label><input id="loc" placeholder="Jl. ..., Kel. ..., Kec. ..."></div>
-  <div style="grid-column:1/-1"><label for="mapl">Link Google Maps atau koordinat (opsional)</label><div style="display:flex;gap:8px;flex-wrap:wrap"><input id="mapl" style="flex:1;min-width:220px" placeholder="https://maps.app.goo.gl/... atau -2.9761, 104.7754"><button type="button" class="np" onclick="openMap()">Buka di Google Maps</button></div><div class="fx" id="locSum" style="margin-top:4px"></div></div>
-  <div><label for="date">Tanggal</label><input id="date" type="date"></div>
-  <div><label for="kontrak">Sistem kontrak utama</label><select id="kontrak" onchange="document.getElementById('fTp').value=this.value"><option value="tb">Borongan total (terima beres)</option><option value="up">Borongan upah saja</option><option value="hr">Upah harian (tukang harian)</option></select></div>
- </div>
-</section>
+<header>
+  <div class="wrap header-flex">
+    <div>
+      <h1>RAB KONSTRUKSI & INTERIOR PRO</h1>
+      <p style="margin:0; font-size:12px; opacity:0.8;">Sistem Otomatis Templat, Multi-Proyek & Tanda Tangan</p>
+    </div>
+    <div class="btn-group no-print">
+      <button class="btn-secondary btn-sm" onclick="toggleDarkMode()">🌓 <span id="modeText">Dark Mode</span></button>
+      <button class="btn-success" onclick="saveData()">💾 Simpan</button>
+      <button class="btn-primary" onclick="window.print()">🖨️ Cetak PDF</button>
+      <button class="btn-danger" onclick="createNewProject()">➕ Proyek Baru</button>
+    </div>
+  </div>
+</header>
 
-<section class="np">
- <h2>Tambah pekerjaan</h2>
- <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px"><button type="button" class="btn-acc" onclick="openCat()">Katalog centang…</button><span class="fx" style="align-self:center">Pilih banyak pekerjaan sekaligus, atau isi form di bawah untuk baris manual.</span></div>
- <form class="grid" onsubmit="addItem(event)" style="align-items:end">
-  <div><label for="fCat">Kategori</label><select id="fCat"></select></div>
-  <div><label for="fName">Uraian pekerjaan</label><input id="fName" required placeholder="Pekerjaan beton sloof"></div>
-  <div><label for="fTpl">Mulai dari</label><select id="fTpl" onchange="fTplChg()"></select></div>
-  <div><label for="fUnit">Satuan</label><select id="fUnit" onchange="fUnitChg()"></select></div>
-  <div><label for="fSg">Kelompok</label><select id="fSg"><option value="">Tanpa kelompok</option><option>Bahan dan material</option><option>Jasa pekerjaan</option></select></div>
-  <div><label for="fMk">Merek / spesifikasi</label><input id="fMk" list="mrkList" placeholder="Pilih atau ketik: Philips, Toto, 25mm..."><datalist id="mrkList"></datalist></div>
-  <div><label for="fLt">Lantai / zona</label><select id="fLt"></select></div>
-  <div><label for="fRg">Ruangan</label><input id="fRg" list="rgList" placeholder="Dapur, Kamar utama..."><datalist id="rgList"><option>Dapur</option><option>Kamar utama</option><option>Kamar tidur</option><option>Kamar mandi / WC</option><option>Ruang tamu</option><option>Ruang keluarga</option><option>Ruang makan</option><option>Gudang / service</option><option>Garasi / carport</option><option>Teras</option><option>Tangga</option></datalist></div>
-  <div><label for="fTp">Sistem pekerjaan</label><select id="fTp"><option value="tb">Borongan terima beres</option><option value="up">Borongan upah saja</option><option value="hr">Upah harian (tukang harian)</option></select></div>
-  <div><label for="fProd">Produktivitas (satuan/hari)</label><input id="fProd" type="number" min="0" step="any" placeholder="mis. 10"></div>
-  <div><label for="fDm">Atau durasi manual (hari)</label><input id="fDm" type="number" min="0" step="any"></div>
-  <div><button class="btn-acc" style="width:100%">Tambah ke tabel</button></div>
- </form>
- <details style="margin-top:12px"><summary>Cara menulis rincian perhitungan</summary>
-  <p>Setiap pekerjaan punya baris-baris hitung bebas. Isi kolom rumus dengan angka atau rumus: <code>14*24,5</code>, <code>L2*L3</code>, <code>PF*0,8*TF</code>. Desimal pakai koma, pemisah argumen pakai titik koma.
-  <code>L3</code> berarti baris ke-3 pada pekerjaan itu. <b>Kode</b> (misalnya <code>PF</code>) membuat nilai bisa dipakai di pekerjaan lain, cocok untuk data Properti. Fungsi: <code>SUM(L4;L8)</code>, <code>SUM(L2:L5)</code>, <code>MAX</code>, <code>MIN</code>, <code>CEIL</code>, <code>ROUND(x;2)</code>, <code>SQRT</code>, <code>COS(derajat)</code>, <code>PI</code>. Tandai baris hasil dengan pilihan "volume". Pakai "+ Judul blok" untuk Blok A, Blok B, dan seterusnya.</p></details>
-</section>
+<div class="container">
+  <!-- Manajemen Proyek & Info -->
+  <div class="card">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+      <h2 style="margin:0; border:none;">Informasi Proyek</h2>
+      <div style="width: 250px;" class="no-print">
+        <label>Pilih Proyek Tersimpan:</label>
+        <select id="projectSelector" onchange="switchProject(this.value)"></select>
+      </div>
+    </div>
+    <div class="grid-4">
+      <div class="form-group"><label>Nama Proyek</label><input type="text" id="pName" placeholder="Pembangunan Rumah" oninput="autoSave()"></div>
+      <div class="form-group"><label>Lokasi Proyek</label><input type="text" id="pLoc" placeholder="Alamat / Kota" oninput="autoSave()"></div>
+      <div class="form-group"><label>Nama Klien</label><input type="text" id="pClient" placeholder="Nama Klien" oninput="autoSave()"></div>
+      <div class="form-group"><label>Tahun</label><input type="text" id="pYear" value="2026" oninput="autoSave()"></div>
+    </div>
+  </div>
 
-<div class="tablebox s-rincian">
- <table>
-  <thead><tr><th class="c" style="width:44px">No</th><th>Uraian pekerjaan dan rincian perhitungan</th><th style="width:90px">Sat.</th><th class="r" style="width:110px">Volume</th><th class="r" style="width:140px">Harga satuan</th><th class="r" style="width:150px">Jumlah</th><th class="r" style="width:170px">Durasi</th><th class="np" style="width:44px"></th></tr></thead>
-  <tbody id="body"></tbody>
- </table>
+  <!-- Main Work Items -->
+  <div class="card">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+      <h2 style="margin:0; border:none;">Rincian Pekerjaan & Kalkulasi</h2>
+      <div class="btn-group no-print">
+        <button class="btn-primary" onclick="addNewItem()">➕ Tambah Baris Pekerjaan</button>
+      </div>
+    </div>
+
+    <div id="itemsContainer"></div>
+
+    <!-- Grand Total & Terbilang -->
+    <div style="background: var(--navy); color: var(--navy-ink); padding: 16px; border-radius: 6px; margin-top: 15px;">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span style="font-size: 16px; font-family: 'Barlow Condensed', sans-serif;">ESTIMASI TOTAL BIAYA PROYEK:</span>
+        <span id="grandTotalDisplay" style="font-size: 22px; font-weight: bold; color: var(--acc);">Rp 0</span>
+      </div>
+      <div style="margin-top: 8px; font-size: 13px; opacity: 0.9; border-top: 1px solid rgba(255,255,255,0.2); pt-2;">
+        <strong>Terbilang:</strong> <span id="terbilangDisplay">Nol Rupiah</span>
+      </div>
+    </div>
+
+    <!-- Tanda Tangan Cetak PDF -->
+    <div class="sign-section">
+      <div class="sign-box">
+        <p>Dibuat Oleh:<br><strong>Kontraktor / Estimator</strong></p>
+        <div class="sign-line"></div>
+        <p>( .......................................... )</p>
+      </div>
+      <div class="sign-box">
+        <p>Disetujui Oleh:<br><strong>Pemilik / Klien</strong></p>
+        <div class="sign-line"></div>
+        <p>( .......................................... )</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Catatan -->
+  <div class="card">
+    <h2>Catatan & Ketentuan</h2>
+    <textarea id="pNotes" rows="3" placeholder="Syarat pembayaran, garansi, dll..." oninput="autoSave()"></textarea>
+  </div>
 </div>
 
-<section class="s-rekap"><h2>Rekapitulasi</h2><div class="tablebox" style="border:0"><table style="min-width:0"><thead><tr><th>Uraian</th><th class="r" style="width:180px">Jumlah (Rp)</th><th class="r kcol" style="width:160px">Jumlah (USD)</th></tr></thead><tbody id="rekap"></tbody></table></div></section>
-
-<section class="s-zrek"><h2>Rekap per lantai / zona dan ruangan</h2><div class="tablebox" style="border:0"><table style="min-width:0"><thead><tr><th>Lantai / zona dan ruangan</th><th class="r" style="width:200px">Jumlah (Rp)</th></tr></thead><tbody id="zrek"></tbody></table></div></section>
-
-<section class="s-jad"><h2>Jadwal dan durasi proyek</h2>
-<div class="grid" style="margin-bottom:12px;max-width:520px"><div><label for="buf">Faktor hambatan cuaca dan lapangan (%)</label><input id="buf" type="number" min="0" step="any"></div><div><label for="hb">Hari kerja per bulan</label><input id="hb" type="number" min="1" step="any"></div></div>
-<div class="tablebox" style="border:0"><table style="min-width:0"><thead><tr><th>Kelompok pekerjaan</th><th style="width:210px">Cara hitung durasi</th><th class="c" style="width:110px">Jalur kritis</th><th class="r" style="width:250px">Durasi</th></tr></thead><tbody id="sched"></tbody></table></div>
-<p class="fx">Durasi tiap pekerjaan = volume ÷ produktivitas per hari (dibulatkan ke atas), atau isi hari manual. Total proyek hanya menjumlahkan kelompok yang dicentang jalur kritis, lalu ditambah faktor hambatan. Kelompok paralel memakai durasi pekerjaan terlama.</p></section>
-
-<section class="s-kurva"><h2>Kurva S (rencana mingguan)</h2><div id="sc"></div><div class="tablebox" style="border:0;margin-top:10px"><table style="min-width:0"><thead><tr><th>Minggu</th><th class="r">Bobot minggu</th><th class="r">Kumulatif</th><th class="r">Biaya minggu (Rp)</th></tr></thead><tbody id="scT"></tbody></table></div><p class="fx">Kelompok jalur kritis berjalan berurutan sesuai urutan kategori dan biayanya tersebar merata sepanjang durasinya. Kelompok non-kritis tersebar sepanjang proyek. Satu minggu = 6 hari kerja.</p></section>
-
-<section class="np s-mat"><h2>Rekap kebutuhan material (belanja)</h2><div class="grid" style="max-width:300px;margin-bottom:12px"><div><label for="wst">Faktor susut / cadangan (%)</label><input id="wst" type="number" min="0" step="any"></div></div><div class="tablebox" style="border:0"><table style="min-width:0"><thead><tr><th>Material</th><th class="r" style="width:150px">Kebutuhan</th><th class="r" style="width:170px">Beli (+ susut)</th><th>Dipakai di pekerjaan</th></tr></thead><tbody id="mto"></tbody></table></div><p class="fx">Isi Material per 1 satuan pekerjaan di bawah rincian tiap pekerjaan (koefisien, misalnya dari AHSP). Kebutuhan = volume × koefisien.</p></section>
-
-<section class="s-tot" style="padding:0;margin-top:18px"><div class="sum">
- <div id="notesBox"><label for="notes">Catatan dan syarat pembayaran</label><textarea id="notes" rows="5" placeholder="Masa berlaku penawaran, termin pembayaran, hal yang tidak termasuk..."></textarea></div>
- <div>
-  <div class="row"><span>Subtotal pekerjaan</span><b id="sSub"></b></div>
-  <div class="row"><span>Overhead dan profit <input class="pct np" id="ovh" type="number" min="0" step="any"><span class="pr" id="ovhP"></span> %</span><b id="sOvh"></b></div>
-  <div class="row"><span>Biaya tak terduga (risk) <input class="pct np" id="ctg" type="number" min="0" step="any" title="Disarankan 5 sampai 10 persen"><span class="pr" id="ctgP"></span> %</span><b id="sCtg"></b></div>
-  <div class="row"><span>PPN <input class="pct np" id="ppn" type="number" min="0" step="any"><span class="pr" id="ppnP"></span> %</span><b id="sPpn"></b></div>
-  <div class="fx">PPN dihitung dari subtotal + overhead + biaya tak terduga.</div>
-  <div class="row np"><span>Kurs USD untuk rekap (Rp per USD, 0 = sembunyikan)</span><input class="pct" style="width:100px" id="kurs" type="number" min="0" step="any"></div>
-  <div class="total"><div style="display:flex;justify-content:space-between"><span>Total RAB</span><span id="sTot"></span></div></div>
-  <div id="sTerb" style="margin-top:6px;font-weight:600;font-style:italic"></div>
-  <div class="row" style="margin-top:6px"><span>Estimasi total durasi proyek</span><b id="sDur"></b></div>
- </div>
-</div></section>
-<section class="s-term"><h2>Syarat pembayaran (termin)</h2><div id="tmBox"></div><button class="np" onclick="aT()">+ Termin</button><p class="fx" id="tmSum"></p></section>
-<div class="sign s-sign"><div>Pemborong / Kontraktor,<br><b>(............................)</b></div><div>Pemilik proyek,<br><b id="sgClient"></b></div></div>
-</main>
-<div class="modal np" id="pmodal" onclick="if(event.target===this)closePrint()"><div class="mbox" role="dialog" aria-modal="true" aria-labelledby="pmT">
- <h2 id="pmT">Cetak / Simpan PDF</h2><p>Centang bagian yang ingin dicetak. Kertas A4 portrait, font Arial 12.</p>
- <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px"><button type="button" class="mk" onclick="pset('all')">Semua</button><button type="button" class="mk" onclick="pset('none')">Kosongkan</button><button type="button" class="mk" onclick="pset('rekap')">Untuk klien</button><button type="button" class="mk" onclick="pset('rincian')">Untuk tim teknis</button><button type="button" class="mk" onclick="pset('material')">Belanja material</button></div>
- <div style="border:1px solid var(--line);border-radius:4px;padding:6px 10px;margin-bottom:10px"><label class="vr" style="font-size:15px;color:var(--ink);margin:0;padding:5px 0"><input type="checkbox" class="pk" value="proj" checked> Data proyek</label><label class="vr" style="font-size:15px;color:var(--ink);margin:0;padding:5px 0"><input type="checkbox" class="pk" value="rincian" checked> Rincian volume dan pekerjaan</label><label class="vr" style="font-size:15px;color:var(--ink);margin:0;padding:5px 0"><input type="checkbox" class="pk" value="rekap" checked> Rekapitulasi</label><label class="vr" style="font-size:15px;color:var(--ink);margin:0;padding:5px 0"><input type="checkbox" class="pk" value="zrek" checked> Rekap per lantai / zona dan ruangan</label><label class="vr" style="font-size:15px;color:var(--ink);margin:0;padding:5px 0"><input type="checkbox" class="pk" value="jad" checked> Jadwal dan durasi proyek</label><label class="vr" style="font-size:15px;color:var(--ink);margin:0;padding:5px 0"><input type="checkbox" class="pk" value="kurva" checked> Kurva S</label><label class="vr" style="font-size:15px;color:var(--ink);margin:0;padding:5px 0"><input type="checkbox" class="pk" value="mat" checked> Rekap kebutuhan material</label><label class="vr" style="font-size:15px;color:var(--ink);margin:0;padding:5px 0"><input type="checkbox" class="pk" value="tot" checked> Total RAB, terbilang, dan catatan</label><label class="vr" style="font-size:15px;color:var(--ink);margin:0;padding:5px 0"><input type="checkbox" class="pk" value="term" checked> Syarat pembayaran (termin)</label><label class="vr" style="font-size:15px;color:var(--ink);margin:0;padding:5px 0"><input type="checkbox" class="pk" value="sign" checked> Tanda tangan</label></div>
- <div style="display:flex;gap:8px"><button class="btn-acc" style="flex:1" onclick="doPrint()">Cetak / Simpan PDF</button><button onclick="closePrint()">Batal</button></div>
-</div></div>
-<div class="modal np" id="cmodal" onclick="if(event.target===this)closeCat()"><div class="mbox" style="max-width:640px;max-height:90vh;display:flex;flex-direction:column" role="dialog" aria-modal="true" aria-labelledby="cmT">
- <h2 id="cmT">Katalog pekerjaan</h2><p>Centang pekerjaan yang dibutuhkan. Material pendukung (paku, kawat, sealtape, dll.) ikut terisi otomatis dan bisa diubah di bawah tiap pekerjaan. Koefisien adalah acuan umum mendekati SNI, sesuaikan dengan kondisi proyek.</p>
- <div style="display:flex;gap:6px;margin-bottom:8px"><input id="cq" placeholder="Cari pekerjaan..." oninput="catFilter()"><button type="button" style="white-space:nowrap" onclick="catAll(true)">Centang tampil</button><button type="button" onclick="catAll(false)">Reset</button></div>
- <div id="clist" style="overflow:auto;flex:1;border:1px solid var(--line);border-radius:4px;padding:8px"></div>
- <div style="display:flex;gap:8px;margin-top:10px"><button class="btn-acc" style="flex:1" onclick="addCat()">Masukkan ke tabel (<span id="cn">0</span>)</button><button onclick="closeCat()">Batal</button></div>
-</div></div>
-<div class="modal np" id="dmodal" onclick="if(event.target===this)$('dmodal').classList.remove('on')"><div class="mbox" style="max-width:520px;max-height:90vh;overflow:auto" role="dialog" aria-modal="true" aria-labelledby="dmT">
- <h2 id="dmT">Google Drive</h2><p>Simpan dan buka RAB langsung dari Google Drive Anda. Aplikasi hanya bisa melihat berkas yang dibuatnya sendiri.</p>
- <label for="gdid">Google OAuth Client ID</label><input id="gdid" placeholder="xxxx.apps.googleusercontent.com" onchange="gdSaveId()">
- <details style="margin:8px 0"><summary>Cara mendapatkan Client ID</summary><p>1) Buka console.cloud.google.com, buat project. 2) Aktifkan Google Drive API. 3) APIs &amp; Services → Credentials → Create OAuth client ID → Web application. 4) Pada Authorized JavaScript origins isi alamat tempat file ini dibuka (mis. https://nama.github.io atau http://localhost:8000). 5) Salin Client ID ke kolom di atas. Cukup sekali. Fitur ini tidak berfungsi bila file dibuka langsung dari folder (file://); gunakan hosting atau localhost.</p></details>
- <div style="display:flex;gap:8px;flex-wrap:wrap;margin:10px 0"><button class="btn-acc" onclick="gdSave()">Simpan ke Drive</button><button onclick="gdList()">Buka dari Drive</button><button onclick="saveDrive()">Unduh berkas saja</button></div>
- <label class="vr" style="margin:6px 0"><input type="checkbox" id="gdauto" onchange="gdSaveId()"> Sinkron otomatis ke Drive setelah perubahan (selama sesi masuk aktif)</label>
- <div class="fx" id="gdst" style="margin:6px 0"></div><div id="gdlist"></div>
- <button onclick="$('dmodal').classList.remove('on')" style="width:100%;margin-top:8px">Tutup</button>
-</div></div>
-<div id="toast" role="status"></div>
-
 <script>
-var DISC=[["A. Pekerjaan sipil",["I. Persiapan","II. Tanah dan fondasi","III. Struktur beton","IV. Dinding","V. Atap dan plafon","VI. Lantai dan finishing","VII. Instalasi","VIII. Lain-lain","IX. Bongkaran dan puing (renovasi)","X. Siteworks (septic tank, resapan, saluran, pagar)"]],["B. Pekerjaan elektrikal",["E-I. Grounding","E-II. Penangkal petir","E-III. Instalasi lampu dan saklar","E-IV. Instalasi stop kontak","E-V. Telepon dan data","E-VI. Sistem suara","E-VII. Alarm kebakaran","E-VIII. CCTV","E-IX. Kabel AC","E-X. Panel listrik"]],["C. Pekerjaan mekanikal",["M-I. Pipa PPR","M-II. Pipa PVC","M-III. Sanitary dan peralatan","M-IV. Lain-lain mekanikal"]],["D. Pekerjaan interior",["D-I. Kitchen set dan lemari","D-II. Backdrop, partisi, dan finishing interior"]]];
-var CATS=[].concat.apply([],DISC.map(function(d){return d[1]}));
-var SGS=['','Bahan dan material','Jasa pekerjaan'];
-var U=["m²","m³","m","Unit","Bh","Pcs","Ls","Kg","Titik","Set","Btg","Rol","Pack","Lot","Paket","HOK","Zak","Lembar"];
-try{var su=JSON.parse(localStorage.getItem('rabk_u'));if(Array.isArray(su))su.forEach(function(u){if(U.indexOf(u)<0)U.push(u)})}catch(e){}
-// Templat baris hitung: [label, rumus, satuan, penanda volume]
-var TP={
- vol:["Volume  P × L × T × jumlah","m³",[["Panjang","0","m"],["Lebar","0","m"],["Tinggi","0","m"],["Jumlah","1","bh"],["Volume","L1*L2*L3*L4","m³",1]]],
- area:["Luas  P × L × jumlah","m²",[["Panjang","0","m"],["Lebar","0","m"],["Jumlah","1","bh"],["Luas","L1*L2*L3","m²",1]]],
- trap:["Fondasi trapesium","m³",[["Panjang","0","m"],["Lebar bawah","0","m"],["Lebar atas","0","m"],["Tinggi","0","m"],["Volume","L1*(L2+L3)/2*L4","m³",1]]],
- len:["Panjang lari  P × jumlah","m",[["Panjang","0","m"],["Jumlah","1","bh"],["Total panjang","L1*L2","m",1]]],
- wall:["Dinding  P × T − lubang","m²",[["Panjang","0","m"],["Tinggi","0","m"],["Jumlah sisi","1","sisi"],["Lubang lebar","0","m"],["Lubang tinggi","0","m"],["Jumlah lubang","0","bh"],["Luas","L1*L2*L3-L4*L5*L6","m²",1]]],
- roof:["Atap miring  P × L ÷ cos α","m²",[["Panjang","0","m"],["Lebar","0","m"],["Sudut","30","°"],["Jumlah sisi","2","sisi"],["Luas","L1*L2/COS(L3)*L4","m²",1]]],
- hok:["Tukang harian  orang × hari = HOK","HOK",[["Jumlah tukang","0","orang"],["Jumlah hari","0","hari"],["HOK","L1*L2","HOK",1]]],
- qty:["Jumlah barang (qty)","Pcs",[["Jumlah","0","pcs",1]]],
- ruang:["Jumlah per ruang / lantai (dijumlahkan)","Pcs",[["Ruang 1","0","pcs"],["Ruang 2","0","pcs"],["Ruang 3","0","pcs"],["Total","SUM(L1:L3)","pcs",1]]],
- kab:["Panjang kabel + cadangan %","m",[["Panjang tarikan","0","m"],["Cadangan","10","%"],["Total","L1*(1+L2/100)","m",1]]],
- blokA:["Multi-blok luas  Blok A + Blok B","m²",[["Blok A  Panjang","0","m"],["Blok A  Lebar","0","m"],["Luas Blok A","L1*L2","m²"],["Blok B  Panjang","0","m"],["Blok B  Lebar","0","m"],["Luas Blok B","L4*L5","m²"],["Total luas","L3+L6","m²",1]]],
- blokV:["Multi-blok volume  Blok A + Blok B","m³",[["Blok A  Panjang","0","m"],["Blok A  Lebar","0","m"],["Blok A  Tinggi","0","m"],["Volume Blok A","L1*L2*L3","m³"],["Blok B  Panjang","0","m"],["Blok B  Lebar","0","m"],["Blok B  Tinggi","0","m"],["Volume Blok B","L5*L6*L7","m³"],["Total volume","L4+L8","m³",1]]],
- blokL:["Multi-blok panjang lari  Blok A + Blok B","m",[["Blok A  Panjang","0","m"],["Blok A  Jumlah","1","bh"],["Total Blok A","L1*L2","m"],["Blok B  Panjang","0","m"],["Blok B  Jumlah","1","bh"],["Total Blok B","L4*L5","m"],["Total panjang","L3+L6","m",1]]],
- man:["Volume manual (satu angka)","m²",[["Volume","0","m²",1]]],
- prop:["Properti / data referensi (tanpa harga)","",[["Panjang","0","m"],["Lebar","0","m"],["Tinggi","0","m"]]]
+let projects = JSON.parse(localStorage.getItem('rab_multi_projects')) || {
+  "Proyek Utama": { name: "Pembangunan Rumah Tinggal", loc: "Jakarta", client: "Bpk. Budi", year: "2026", notes: "Pembayaran bertahap sesuai termin.", items: [] }
 };
-var MF={SUM:function(){var s=0;for(var i=0;i<arguments.length;i++)s+=arguments[i];return s},MAX:Math.max,MIN:Math.min,CEIL:Math.ceil,FLOOR:Math.floor,
- ROUND:function(x,d){var m=Math.pow(10,d||0);return Math.round(x*m)/m},SQRT:Math.sqrt,PI:Math.PI,
- COS:function(a){return Math.cos(a*Math.PI/180)},SIN:function(a){return Math.sin(a*Math.PI/180)},TAN:function(a){return Math.tan(a*Math.PI/180)}};
-var ln=function(lb,ex,un,k,v,h){return{k:k||'',lb:lb,ex:ex,un:un||'',h:h?1:0,v:v?1:0}};
-var DEF=[
- {id:1,cat:CATS[0],name:"Pembersihan lokasi pembangunan",kind:"job",unit:"m²",price:25000,ls:[ln("Blok A",'','',0,0,1),ln("Panjang","14","m"),ln("Lebar","24,5","m"),ln("Luas","L2*L3","m²"),ln("Blok B",'','',0,0,1),ln("Panjang","34,5","m"),ln("Lebar","14","m"),ln("Luas","L6*L7","m²"),ln("Total luas","SUM(L4;L8)","m²",0,1)]},
- {id:2,cat:CATS[1],name:"Fondasi batu kali tipe 1",kind:"prop",unit:"",price:0,ls:[ln("Panjang fondasi","71,83","m","PF"),ln("Lebar bawah","0,6","m","LB"),ln("Lebar atas","0,3","m","LA"),ln("Tinggi","1","m","TF")]},
- {id:3,cat:CATS[1],name:"Galian tanah fondasi",kind:"job",unit:"m³",price:95000,ls:[ln("Panjang","PF","m"),ln("Lebar","0,8","m"),ln("Tinggi","TF","m"),ln("Volume","L1*L2*L3","m³",0,1)]},
- {id:4,cat:CATS[1],name:"Pasangan batu belah",kind:"job",unit:"m³",price:850000,ls:[ln("Volume  P × (lebar bawah + atas) ÷ 2 × T","PF*(LB+LA)/2*TF","m³",0,1)]},
- {id:5,cat:CATS[2],name:"Beton sloof 20/20",kind:"job",unit:"m³",price:1800000,ls:[ln("Panjang","108,26","m"),ln("Lebar","0,2","m"),ln("Tinggi","0,2","m"),ln("Jumlah bentang","1","bh"),ln("Volume","L1*L2*L3*L4","m³",0,1)]}
-];
-var D=[],R={};
-var $=function(i){return document.getElementById(i)};
-var rp=function(n){return new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0}).format(n)};
-var fm=function(n){return (Math.round(n*100)/100).toLocaleString('id-ID')};
-var esc=function(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
-var own=function(o,k){return Object.prototype.hasOwnProperty.call(o,k)};
+let activeProjectKey = "Proyek Utama";
 
-// Evaluator rumus: hanya angka, operator, fungsi MF, acuan Ln dan kode
-function ev(ex,sc){
- if(!String(ex).trim())return null;
- var e=String(ex).replace(/L(\d+):L(\d+)/g,function(_,a,b){var r=[];for(var i=+a;i<=+b;i++)r.push('L'+i);return r.join(';')});
- if(/[^0-9A-Za-z_+\-*\/().,;:\s^]/.test(e))throw new Error('Karakter tidak dikenal');
- e=e.replace(/,/g,'.').replace(/;/g,',').replace(/\^/g,'**');
- var ids=e.match(/[A-Za-z_][A-Za-z0-9_]*/g)||[];
- for(var i=0;i<ids.length;i++)if(!own(sc,ids[i]))throw new Error(ids[i]+' belum ada');
- var ns=Object.keys(sc),r=Function.apply(null,ns.concat('return ('+e+')')).apply(null,ns.map(function(k){return sc[k]}));
- if(typeof r!=='number'||!isFinite(r))throw new Error('Hasil tidak valid');
- return r;
+function terbilang(nilai) {
+  if (isNaN(nilai) || nilai === 0) return "Nol Rupiah";
+  const huruf = ["", "Satu", "Dua", "Tiga", "Empat", "Lima", "Enam", "Tujuh", "Delapan", "Sembilan", "Sepuluh", "Sebelas"];
+  let temp = "";
+  if (nilai < 12) temp = " " + huruf[nilai];
+  else if (nilai < 20) temp = terbilang(nilai - 10) + " Belas";
+  else if (nilai < 100) temp = terbilang(Math.floor(nilai / 10)) + " Puluh" + terbilang(nilai % 10);
+  else if (nilai < 200) temp = " Seratus" + terbilang(nilai - 100);
+  else if (nilai < 1000) temp = terbilang(Math.floor(nilai / 100)) + " Ratus" + terbilang(nilai % 100);
+  else if (nilai < 2000) temp = " Seribu" + terbilang(nilai - 1000);
+  else if (nilai < 1000000) temp = terbilang(Math.floor(nilai / 1000)) + " Ribu" + terbilang(nilai % 1000);
+  else if (nilai < 1000000000) temp = terbilang(Math.floor(nilai / 1000000)) + " Juta" + terbilang(nilai % 1000000);
+  else if (nilai < 1000000000000) temp = terbilang(Math.floor(nilai / 1000000000)) + " Miliar" + terbilang(nilai % 1000000000);
+  return temp.trim() + " Rupiah";
 }
-function evalAll(){
- R={};var G={};
- D.forEach(function(j){
-  var loc={},res=[];
-  j.ls.forEach(function(l,i){
-   var r={};
-   if(!l.h){try{r.v=ev(l.ex,Object.assign({},MF,G,loc))}catch(x){r.e=x.message}}
-   loc['L'+(i+1)]=(r.v==null)?0:r.v;
-   if(l.k&&r.v!=null)G[l.k]=r.v;
-   res.push(r);
+
+function initProjects() {
+  const sel = document.getElementById('projectSelector');
+  sel.innerHTML = '';
+  for (let key in projects) {
+    let opt = document.createElement('option');
+    opt.value = key;
+    opt.textContent = key;
+    if (key === activeProjectKey) opt.selected = true;
+    sel.appendChild(opt);
+  }
+  loadActiveProjectData();
+}
+
+function loadActiveProjectData() {
+  let p = projects[activeProjectKey];
+  document.getElementById('pName').value = p.name || '';
+  document.getElementById('pLoc').value = p.loc || '';
+  document.getElementById('pClient').value = p.client || '';
+  document.getElementById('pYear').value = p.year || '2026';
+  document.getElementById('pNotes').value = p.notes || '';
+  renderItems();
+}
+
+function switchProject(key) {
+  activeProjectKey = key;
+  loadActiveProjectData();
+}
+
+function createNewProject() {
+  let name = prompt("Masukkan Nama Proyek Baru:");
+  if (!name) return;
+  projects[name] = { name: name, loc: "", client: "", year: "2026", notes: "", items: [] };
+  activeProjectKey = name;
+  saveData();
+  initProjects();
+}
+
+function addNewItem() {
+  projects[activeProjectKey].items.push({
+    title: "Pekerjaan Baru", unit: "m2", vol: 1, price: 50000, rows: []
   });
-  var vi=-1;
-  j.ls.forEach(function(l,i){if(l.v&&!l.h)vi=i});
-  if(vi<0)for(var i=j.ls.length-1;i>=0;i--)if(!j.ls[i].h&&res[i].v!=null){vi=i;break}
-  R[j.id]={res:res,vi:vi,vol:(vi>=0&&res[vi].v!=null)?res[vi].v:0};
- });
+  renderItems();
+  autoSave();
 }
 
-function meta(){return{docNo:$('docNo').value,title:$('title').value,client:$('client').value,loc:$('loc').value,date:$('date').value,notes:$('notes').value,ovh:$('ovh').value,ppn:$('ppn').value,kurs:$('kurs').value,kontrak:$('kontrak').value,ctg:$('ctg').value,wst:$('wst').value,ptype:$('ptype').value,flr:$('flr').value,prov:$('prov').value,city:$('city').value,mapl:$('mapl').value,buf:$('buf').value,hb:$('hb').value}}
-function save(){try{localStorage.setItem('rabk2_d',JSON.stringify(D));localStorage.setItem('rabk2_m',JSON.stringify(meta()))}catch(e){}}
-function load(){
- var d=null,m=null;
- try{d=JSON.parse(localStorage.getItem('rabk2_d'));m=JSON.parse(localStorage.getItem('rabk2_m'))}catch(e){}
- D=Array.isArray(d)?d:JSON.parse(JSON.stringify(DEF));
- m=m||{docNo:"RAB/2026/001",title:"Pembangunan rumah tinggal",client:"Bpk. Ahmad",loc:"Bandung, Jawa Barat",date:new Date().toISOString().slice(0,10),notes:"Penawaran berlaku 30 hari. Pembayaran 4 termin sesuai progres.",ovh:10,ppn:11};
- $('docNo').value=m.docNo||'';$('title').value=m.title||'';$('client').value=m.client||'';$('loc').value=m.loc||'';$('date').value=m.date||'';$('notes').value=m.notes||'';$('ovh').value=m.ovh;$('ppn').value=m.ppn;$('kurs').value=(m.kurs===undefined||m.kurs==='')?16000:m.kurs;$('kontrak').value=m.kontrak||'tb';$('ptype').value=m.ptype||'baru';$('flr').value=m.flr||2;$('prov').value=m.prov||'Sumatera Selatan';$('city').value=m.city===undefined?'Palembang':m.city;$('mapl').value=m.mapl||'';$('ctg').value=(m.ctg===undefined||m.ctg==='')?5:m.ctg;$('wst').value=(m.wst===undefined||m.wst==='')?5:m.wst;$('buf').value=(m.buf===undefined||m.buf==='')?10:m.buf;$('hb').value=m.hb||26;
+function deleteItem(index) {
+  projects[activeProjectKey].items.splice(index, 1);
+  renderItems();
+  autoSave();
 }
-function toast(t){var e=$('toast');e.textContent=t;e.classList.add('on');clearTimeout(toast.h);toast.h=setTimeout(function(){e.classList.remove('on')},2200)}
 
-function unitOpts(sel){var L=U.slice();if(sel&&L.indexOf(sel)<0)L.push(sel);return L.map(function(u){return '<option'+(u===sel?' selected':'')+'>'+esc(u)+'</option>'}).join('')+'<option value="__new">+ Satuan baru…</option>'}
-function newUnit(){var u=(prompt('Nama satuan baru (contoh: Roll, Trip, Hari):')||'').trim();if(!u)return null;if(U.indexOf(u)<0){U.push(u);try{localStorage.setItem('rabk_u',JSON.stringify(U))}catch(e){}}return u}
+function renderItems() {
+  let container = document.getElementById('itemsContainer');
+  container.innerHTML = '';
+  let items = projects[activeProjectKey].items;
+  let grandTotal = 0;
 
-function lineH(j,l,i,r){
- var id=j.id,n='L'+(i+1);
- if(l.h)return '<div class="ln hd"><span class="lno">'+n+'</span><input value="'+esc(l.lb)+'" placeholder="Judul blok (mis. Blok A)" onchange="sL('+id+','+i+',\'lb\',this.value)"><button class="del np" onclick="delL('+id+','+i+')" aria-label="Hapus">✕</button></div>';
- var res=r.e?'<span class="err" title="'+esc(r.e)+'">⚠ '+esc(r.e)+'</span>':(r.v==null?'':'= '+fm(r.v));
- var p=function(k){return 'onchange="sL('+id+','+i+',\''+k+'\',this.value)"'};
- return '<div class="ln"><span class="lno">'+n+'</span><input value="'+esc(l.k)+'" placeholder="kode" aria-label="Kode" '+p('k')+'>'
- +'<input value="'+esc(l.lb)+'" placeholder="Keterangan" aria-label="Keterangan" '+p('lb')+'>'
- +'<input value="'+esc(l.ex)+'" placeholder="angka atau rumus" aria-label="Rumus" '+p('ex')+'>'
- +'<span class="rs">'+res+'</span>'
- +'<input value="'+esc(l.un)+'" placeholder="sat." aria-label="Satuan baris" '+p('un')+'>'
- +'<label class="vr np"><input type="radio" name="v'+id+'" '+(R[id].vi===i?'checked':'')+' onchange="setV('+id+','+i+')">volume</label>'
- +'<button class="del np" onclick="delL('+id+','+i+')" aria-label="Hapus baris">✕</button></div>';
-}
-function render(){
- evalAll();
- var b=$('body'),h='',no=1,lastD='';
- if(!D.length){b.innerHTML='<tr><td colspan="8" class="empty">Belum ada pekerjaan. Isi formulir di atas lalu pilih Tambah ke tabel.</td></tr>';sum();return}
- CATS.forEach(function(c){
-  var L=D.filter(function(j){return j.cat===c});if(!L.length)return;var sgOf=function(j){return SGS.indexOf(j.sg)<0?'':j.sg};L=SGS.reduce(function(a,s){return a.concat(L.filter(function(j){return sgOf(j)===s}))},[]);var dn=DISC.filter(function(d){return d[1].indexOf(c)>=0})[0][0];if(dn!==lastD){h+='<tr class="disc"><td colspan="8">'+esc(dn)+'</td></tr>';lastD=dn}no=1;var ps=null;
-  h+='<tr class="cat"><td colspan="8">'+esc(c)+'</td></tr>';
-  var st=0;
-  L.forEach(function(j){
-   var r=R[j.id],prop=j.kind==='prop',tot=prop?0:r.vol*j.price;st+=tot;var s=sgOf(j);if(s!==ps){if(s)h+='<tr class="sg"><td></td><td colspan="7">'+esc(s)+'</td></tr>';ps=s}
-   h+='<tr class="job"><td class="c num">'+(prop?'':no++)+'</td>'
-   +'<td><input style="font-weight:600" value="'+esc(j.name)+'" onchange="setJ('+j.id+',\'name\',this.value)" aria-label="Uraian pekerjaan"><div style="display:flex;gap:6px"><input class="mk" list="mrkList" value="'+esc(j.mrk||'')+'" placeholder="Merek / spesifikasi" aria-label="Merek" onchange="setJ('+j.id+',\'mrk\',this.value)">'+(prop?'':'<select class="mk np" aria-label="Kelompok" onchange="setJ('+j.id+',\'sg\',this.value)">'+SGS.map(function(g){return '<option value="'+g+'"'+(sgOf(j)===g?' selected':'')+'>'+(g||'Tanpa kelompok')+'</option>'}).join('')+'</select>')+'</div><div style="display:flex;gap:6px"><select class="mk" aria-label="Lantai atau zona" onchange="setJ('+j.id+',\'lt\',this.value)">'+znOpts(j.lt)+'</select><input class="mk" list="rgList" placeholder="Ruangan" aria-label="Ruangan" value="'+esc(j.rg||'')+'" onchange="setJ('+j.id+',\'rg\',this.value)"></div>'+(prop?'<span class="tag">Properti: data untuk dipakai pekerjaan lain</span>':'')+'</td>'
-   +'<td>'+(prop?'':'<select onchange="setUnit(this,'+j.id+')" aria-label="Satuan">'+unitOpts(j.unit)+'</select>')+'</td>'
-   +'<td class="r vol">'+(prop?'':fm(r.vol))+'</td>'
-   +'<td class="r">'+(prop?'':'<input class="price" type="number" min="0" step="any" value="'+j.price+'" onchange="setJ('+j.id+',\'price\',this.value)" aria-label="Harga satuan"><select class="mk np" style="margin-top:4px" aria-label="Sistem pekerjaan" onchange="setJ('+j.id+',\'tp\',this.value)"><option value="tb"'+((j.tp||'tb')==='tb'?' selected':'')+'>Terima beres</option><option value="up"'+(j.tp==='up'?' selected':'')+'>Upah saja</option><option value="hr"'+(j.tp==='hr'?' selected':'')+'>Upah harian</option></select><span class="pr fx">'+({up:'Upah saja',hr:'Upah harian'}[j.tp]||'Terima beres')+'</span>')+'</td>'
-   +'<td class="r num"><b>'+(prop?'':rp(tot))+'</b></td>'+'<td class="r num">'+(prop?'':'<b>'+(dur(j)?dur(j)+' hari':'-')+'</b><div style="display:flex;gap:4px;margin-top:4px" class="np"><input class="mk" type="number" min="0" step="any" style="width:50%" placeholder="'+(j.tp==='hr'?'orang':'sat/hari')+'" title="'+(j.tp==='hr'?'Jumlah tukang (kosong = baris 1 rincian)':'Produktivitas per hari')+'" value="'+esc(j.prod||'')+'" onchange="setJ('+j.id+',\'prod\',this.value)"><input class="mk" type="number" min="0" step="any" style="width:50%" placeholder="hari" title="Durasi manual (hari)" value="'+esc(j.dm||'')+'" onchange="setJ('+j.id+',\'dm\',this.value)"></div>')+'</td>'
-   +'<td class="np"><button class="del" onclick="delJ('+j.id+')" aria-label="Hapus pekerjaan">✕</button></td></tr>';
-   var lines=j.ls.map(function(l,i){return lineH(j,l,i,r.res[i])}).join('');
-   var opts='<option value="">Tambah dari templat…</option>'+Object.keys(TP).map(function(k){return '<option value="'+k+'">'+TP[k][0]+'</option>'}).join('');
-   h+='<tr class="det"><td></td><td colspan="7">'+lines
-   +'<div class="tl np"><button onclick="addL('+j.id+',0)">+ Baris</button><button onclick="addL('+j.id+',1)">+ Judul blok</button><select onchange="tpl('+j.id+',this)" aria-label="Templat">'+opts+'</select></div>'+matH(j)+'</td></tr>';
+  items.forEach((item, idx) => {
+    let subTotal = item.vol * item.price;
+    grandTotal += subTotal;
+
+    let div = document.createElement('div');
+    div.className = 'item-box';
+    div.innerHTML = `
+      <div class="item-header">
+        <div class="item-header-inputs">
+          <input type="text" value="${item.title}" style="flex:2; min-width:200px;" oninput="updateItemField(${idx}, 'title', this.value)" placeholder="Nama Pekerjaan">
+          <input type="text" value="${item.unit}" style="width:70px;" oninput="updateItemField(${idx}, 'unit', this.value)" placeholder="Satuan">
+          <input type="number" value="${item.vol}" style="width:90px;" oninput="updateItemField(${idx}, 'vol', this.value)" placeholder="Volume">
+          <input type="number" value="${item.price}" style="width:130px;" oninput="updateItemField(${idx}, 'price', this.value)" placeholder="Harga Satuan">
+        </div>
+        <div style="font-weight:bold; color:var(--success);">Rp ${subTotal.toLocaleString('id-ID')}</div>
+        <button class="btn-danger btn-sm" onclick="deleteItem(${idx})">✕</button>
+      </div>
+      <div style="display:flex; gap:10px; align-items:center;">
+        <select id="tmpl-${idx}" style="max-width:220px;" class="no-print">
+          <option value="">+ Tambah Templat Hitung...</option>
+          <option value="luas">Luas (P x L)</option>
+          <option value="volume">Volume (P x L x T)</option>
+        </select>
+        <button class="btn-secondary btn-sm no-print" onclick="applyTemplate(${idx})">Terapkan</button>
+      </div>
+      <div class="sub-calc-box" id="subcalc-${idx}"></div>
+    `;
+    container.appendChild(div);
+    renderSubRows(idx);
   });
-  h+='<tr class="sub"><td colspan="5" class="r">Subtotal '+esc(c)+'</td><td class="r">'+rp(st)+'</td><td class="r">'+(catDur(c)?catDur(c)+' hari':'')+'</td><td class="np"></td></tr>';
- });
- b.innerHTML=h;sum();
-}
-function sum(){
- var s=D.reduce(function(a,j){return a+(j.kind==='prop'||!R[j.id]?0:R[j.id].vol*j.price)},0);
- var po=parseFloat($('ovh').value)||0,pp=parseFloat($('ppn').value)||0;
- var o=s*po/100,cp=parseFloat($('ctg').value)||0,c=s*cp/100,p=(s+o+c)*pp/100;
- $('sSub').textContent=rp(s);$('sOvh').textContent=rp(o);$('sCtg').textContent=rp(c);$('ctgP').textContent=cp;$('sPpn').textContent=rp(p);$('sTot').textContent=rp(s+o+c+p);TOTAL=s+o+c+p;$('sTerb').textContent='Terbilang: '+terbilang(TOTAL);
- $('ovhP').textContent=po;$('ppnP').textContent=pp;
- $('sgClient').textContent=$('client').value||'Pemilik proyek';rekap(s,o,p,c);sched();zrek();kurvaS();mto();termin();$('ppInfo').textContent='Kepada Yth. '+($('client').value||'-')+' | Perihal: '+($('title').value||'Penawaran RAB')+' | No. '+$('docNo').value+' | '+$('date').value;$('locSum').textContent='Lokasi: '+[$('loc').value,$('city').value,$('prov').value].filter(Boolean).join(', ')+' | '+(parseInt($('flr').value)||1)+' lantai | '+($('ptype').value==='reno'?'Renovasi / perluasan':'Bangun baru');
- save();
-}
-var CS={};try{CS=JSON.parse(localStorage.getItem('rabk2_cs'))||{}}catch(e){}
-function cs(c){var s=CS[c]||{};return{m:s.m||'sum',k:s.k===undefined?DISC[0][1].indexOf(c)>=0:s.k}}
-function dur(j){if(j.kind==='prop'||!R[j.id])return 0;var m=parseFloat(j.dm)||0;if(m>0)return m;var p=parseFloat(j.prod)||0;if(!p&&j.tp==='hr'&&R[j.id].res[0])p=R[j.id].res[0].v||0;return p>0?Math.ceil(R[j.id].vol/p-1e-9):0}
-function catDur(c){var ds=D.filter(function(j){return j.cat===c&&j.kind!=='prop'}).map(dur);if(!ds.length)return 0;return cs(c).m==='max'?Math.max.apply(null,ds):ds.reduce(function(a,b){return a+b},0)}
-function setCS(i,k,v){var c=CATS[i],o=cs(c);o[k]=v;CS[c]=o;try{localStorage.setItem('rabk2_cs',JSON.stringify(CS))}catch(e){}render()}
-function sched(){
- var hb=parseFloat($('hb').value)||26,bf=parseFloat($('buf').value)||0,h='',tot=0;
- CATS.forEach(function(c,i){
-  if(!D.some(function(j){return j.cat===c&&j.kind!=='prop'}))return;
-  var s=cs(c),d=catDur(c);if(s.k)tot+=d;
-  h+='<tr><td>'+esc(c)+'</td><td><select class="mk" style="margin:0" onchange="setCS('+i+',\'m\',this.value)"><option value="sum"'+(s.m==='sum'?' selected':'')+'>Berurutan (dijumlah)</option><option value="max"'+(s.m==='max'?' selected':'')+'>Paralel (terlama)</option></select></td><td class="c"><input type="checkbox" style="width:auto" '+(s.k?'checked':'')+' onchange="setCS('+i+',\'k\',this.checked)" aria-label="Masuk jalur kritis"></td><td class="r">'+d+' hari</td></tr>';
- });
- var fin=Math.ceil(tot*(1+bf/100)),bl=fin/hb;
- h+='<tr class="sub"><td colspan="3">Jumlah durasi jalur kritis</td><td class="r">'+tot+' hari</td></tr><tr><td colspan="3">Faktor hambatan cuaca dan lapangan ('+bf+'%)</td><td class="r">+ '+(fin-tot)+' hari</td></tr><tr class="sub"><td colspan="3">Estimasi total durasi proyek</td><td class="r">'+fin+' hari kerja (± '+fm(bl)+' bulan)</td></tr>';
- $('sched').innerHTML=h;
- $('sDur').textContent=fin+' hari kerja (± '+fm(bl)+' bulan)';
-}
-var PROV=['Aceh','Sumatera Utara','Sumatera Barat','Riau','Kepulauan Riau','Jambi','Sumatera Selatan','Bangka Belitung','Bengkulu','Lampung','DKI Jakarta','Banten','Jawa Barat','Jawa Tengah','DI Yogyakarta','Jawa Timur','Bali','Nusa Tenggara Barat','Nusa Tenggara Timur','Kalimantan Barat','Kalimantan Tengah','Kalimantan Selatan','Kalimantan Timur','Kalimantan Utara','Sulawesi Utara','Gorontalo','Sulawesi Tengah','Sulawesi Barat','Sulawesi Selatan','Sulawesi Tenggara','Maluku','Maluku Utara','Papua','Papua Barat','Papua Selatan','Papua Tengah','Papua Pegunungan','Papua Barat Daya'];
-function ZN(){var n=Math.max(1,parseInt($('flr').value)||1),a=['Pekerjaan luar / siteworks'];for(var i=1;i<=n;i++)a.push('Lantai '+i);a.push('Atap');return a}
-function znOpts(sel){var a=ZN();if(sel&&a.indexOf(sel)<0)a.push(sel);return '<option value="">(Tanpa zona)</option>'+a.map(function(z){return '<option'+(z===sel?' selected':'')+'>'+esc(z)+'</option>'}).join('')}
-function floorsChg(){$('fLt').innerHTML=znOpts('');save();render()}
-function openMap(){var l=$('mapl').value.trim(),u;if(/^https?:/i.test(l))u=l;else{var q=/^-?\d+(\.\d+)?\s*,\s*-?\d+(\.\d+)?$/.test(l)?l.replace(/\s/g,''):[$('loc').value,$('city').value,$('prov').value].filter(Boolean).join(', ');if(!q){toast('Isi alamat atau koordinat dulu');return}u='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q)}window.open(u,'_blank','noopener')}
-function ptypeChg(){if($('ptype').value==='reno'&&!D.some(function(j){return j.cat===CATS[8]})){D.push({id:Date.now(),cat:CATS[8],name:'Bongkaran dan pembuangan puing',mrk:'',sg:'',tp:$('kontrak').value,prod:'',dm:'',lt:'',rg:'',kind:'job',unit:'Ls',price:0,ls:mkLines('qty',0)});save();render();toast('Renovasi: item Bongkaran ditambahkan. Isi volume dan harga.')}else{save();sum()}}
-function zrek(){var zs=ZN().concat(['']),h='';D.forEach(function(j){if(j.lt&&zs.indexOf(j.lt)<0)zs.push(j.lt)});zs.forEach(function(z){var js=D.filter(function(j){return j.kind!=='prop'&&(j.lt||'')===z});if(!js.length)return;var tot=0,rm={};js.forEach(function(j){var t=R[j.id]?R[j.id].vol*j.price:0;tot+=t;var r=j.rg||'(umum)';rm[r]=(rm[r]||0)+t});h+='<tr class="cat"><td>'+esc(z||'Tanpa zona')+'</td><td class="r">'+rp(tot)+'</td></tr>';Object.keys(rm).forEach(function(r){h+='<tr><td style="padding-left:28px">'+esc(r)+'</td><td class="r">'+rp(rm[r])+'</td></tr>'})});$('zrek').innerHTML=h||'<tr><td colspan="2" class="empty">Isi Lantai / zona dan Ruangan pada pekerjaan untuk melihat rekap ini.</td></tr>'}
-var TOTAL=0,TM=[{t:'Termin 1: uang muka (DP)',p:30},{t:'Termin 2: progres fisik 50%',p:50},{t:'Termin 3: pelunasan setelah serah terima',p:20}];
-try{var stm=JSON.parse(localStorage.getItem('rabk2_tm'));if(Array.isArray(stm))TM=stm}catch(e){}
-function saveT(){try{localStorage.setItem('rabk2_tm',JSON.stringify(TM))}catch(e){}}
-function aT(){TM.push({t:'Termin '+(TM.length+1),p:0});saveT();termin()}
-function dT(i){TM.splice(i,1);saveT();termin()}
-function sT(i,k,v){TM[i][k]=k==='p'?(parseFloat(v)||0):v;saveT();termin()}
-function termin(){
- var G='grid-template-columns:1fr 90px 170px 30px;gap:8px;margin-bottom:6px;align-items:center';
- var h='<div class="fx" style="display:grid;'+G+'"><span>Keterangan</span><span>Persen (%)</span><span class="r">Jumlah (Rp)</span></div>',sp=0;
- TM.forEach(function(m,i){sp+=m.p;h+='<div style="display:grid;'+G+'"><input value="'+esc(m.t)+'" onchange="sT('+i+',\'t\',this.value)" aria-label="Keterangan termin"><input type="number" min="0" step="any" value="'+m.p+'" onchange="sT('+i+',\'p\',this.value)" aria-label="Persen"><b class="r">'+rp(TOTAL*m.p/100)+'</b><button class="del np" onclick="dT('+i+')" aria-label="Hapus termin">✕</button></div>'});
- $('tmBox').innerHTML=h;
- $('tmSum').textContent='Total termin: '+fm(sp)+'% = '+rp(TOTAL*sp/100)+(Math.abs(sp-100)>0.001?' (belum 100%, periksa pembagian termin)':'');
-}
-function sM(id,i,k,v){fj(id).mt[i][k]=v;save();render()}
-function aM(id){var j=fj(id);(j.mt=j.mt||[]).push({n:'',k:'',u:''});save();render()}
-function dM(id,i){fj(id).mt.splice(i,1);save();render()}
-function matH(j){if(j.kind==='prop')return '';var vol=R[j.id].vol,ms=j.mt||[];
- return '<div class="np" style="margin:8px 0 0 42px"><div class="fx" style="margin-bottom:3px">Material per 1 satuan pekerjaan (untuk rekap belanja)</div>'+ms.map(function(m,i){var q=(parseFloat(String(m.k).replace(',','.'))||0)*vol,p=function(k){return 'onchange="sM('+j.id+','+i+',\'' +k+'\',this.value)"'};
-  return '<div style="display:grid;grid-template-columns:1.4fr 90px 80px 1fr 28px;gap:6px;margin-bottom:4px;align-items:center"><input class="mk" style="margin:0" value="'+esc(m.n)+'" placeholder="Material (Semen, Besi, Cat...)" '+p('n')+'><input class="mk" style="margin:0" value="'+esc(m.k)+'" placeholder="koefisien" '+p('k')+'><input class="mk" style="margin:0" value="'+esc(m.u)+'" placeholder="sat." '+p('u')+'><span class="rs">= '+fm(q)+' '+esc(m.u)+'</span><button class="del" onclick="dM('+j.id+','+i+')" aria-label="Hapus material">✕</button></div>'}).join('')+'<button class="mk" style="width:auto;padding:3px 10px;font-weight:600" onclick="aM('+j.id+')">+ Material</button></div>'}
-function mto(){
- var wf=1+(parseFloat($('wst').value)||0)/100,A={},h='';
- D.forEach(function(j){if(j.kind==='prop'||!R[j.id]||j.tp==='up'||j.tp==='hr')return;(j.mt||[]).forEach(function(m){var n=(m.n||'').trim();if(!n)return;var k=n.toLowerCase()+'|'+(m.u||'').trim().toLowerCase(),q=(parseFloat(String(m.k).replace(',','.'))||0)*R[j.id].vol,a=A[k]=A[k]||{n:n,u:m.u||'',q:0,w:[]};a.q+=q;if(a.w.indexOf(j.name)<0)a.w.push(j.name)})});
- Object.keys(A).sort().forEach(function(k){var a=A[k];h+='<tr><td>'+esc(a.n)+'</td><td class="r">'+fm(a.q)+' '+esc(a.u)+'</td><td class="r"><b>'+Math.ceil(a.q*wf-1e-9).toLocaleString('id-ID')+' '+esc(a.u)+'</b></td><td class="fx">'+esc(a.w.join(', '))+'</td></tr>'});
- $('mto').innerHTML=h||'<tr><td colspan="4" class="empty">Belum ada material. Klik + Material di bawah rincian pekerjaan.</td></tr>';
-}
-function kurvaS(){
- var segs=[],T=0,bf=parseFloat($('buf').value)||0,cost=0;
- CATS.forEach(function(c){var js=D.filter(function(j){return j.cat===c&&j.kind!=='prop'});if(!js.length)return;var s=cs(c),d=catDur(c),k=js.reduce(function(a,j){return a+(R[j.id]?R[j.id].vol*j.price:0)},0);cost+=k;var z={d:d,k:k,c:s.k};if(s.k){z.s=T;T+=d}segs.push(z)});
- if(!T||!cost){$('sc').innerHTML='<div class="empty">Isi produktivitas / durasi dan harga pekerjaan, lalu centang jalur kritis, untuk melihat Kurva S.</div>';$('scT').innerHTML='';return}
- var N=Math.ceil(T*(1+bf/100)),f=N/T,day=[],i;for(i=0;i<N;i++)day.push(0);
- segs.forEach(function(z){var a=z.c?Math.floor(z.s*f):0,b=z.c?Math.round((z.s+z.d)*f):N;if(b<=a)b=a+1;if(b>N){b=N;a=Math.min(a,N-1)}for(var i=a;i<b;i++)day[i]+=z.k/(b-a)});
- var W=Math.ceil(N/6),wk=[],cum=0,pts=[],bars='',rows='',x0=44,y0=20,w=660,hh=200,q,d;
- for(q=0;q<W;q++){var v=0;for(d=q*6;d<Math.min(N,q*6+6);d++)v+=day[d];wk.push(v)}
- wk.forEach(function(v,q){cum+=v;var cp=cum/cost*100,wp=v/cost*100,bw=w/W,x=x0+q*bw;
-  bars+='<rect class="bar" x="'+(x+2)+'" y="'+(y0+hh-wp*hh/100)+'" width="'+Math.max(1,bw-4)+'" height="'+(wp*hh/100)+'"/>';
-  pts.push((x+bw)+','+(y0+hh-cp*hh/100));
-  rows+='<tr><td>Minggu '+(q+1)+'</td><td class="r">'+fm(wp)+'%</td><td class="r">'+fm(cp)+'%</td><td class="r">'+rp(v)+'</td></tr>'});
- var gl='';[0,25,50,75,100].forEach(function(p){var y=y0+hh-p*hh/100;gl+='<line class="g" x1="'+x0+'" x2="'+(x0+w)+'" y1="'+y+'" y2="'+y+'"/><text x="'+(x0-6)+'" y="'+(y+4)+'" text-anchor="end">'+p+'%</text>'});
- var xl='';for(q=0;q<W;q+=Math.max(1,Math.ceil(W/12)))xl+='<text x="'+(x0+q*w/W+w/W/2)+'" y="'+(y0+hh+16)+'" text-anchor="middle">M'+(q+1)+'</text>';
- $('sc').innerHTML='<svg class="cv" viewBox="0 0 720 250" role="img" aria-label="Kurva S rencana mingguan">'+gl+bars+'<polyline class="ln2" points="'+x0+','+(y0+hh)+' '+pts.join(' ')+'"/>'+xl+'</svg><div class="fx">Garis: kumulatif progres rencana. Batang: bobot biaya per minggu. Total '+W+' minggu ('+N+' hari kerja).</div>';
- $('scT').innerHTML=rows;
-}
-function rekap(s,o,p,c){
- var k=parseFloat($('kurs').value)||0;
- var usd=function(n){return k>0?'$ '+(n/k).toLocaleString('en-US',{maximumFractionDigits:2}):''};
- var row=function(t,n,cls){return '<tr class="'+(cls||'')+'"><td>'+esc(t)+'</td><td class="r">'+rp(n)+'</td><td class="r"'+(k>0?'':' style="display:none"')+'>'+usd(n)+'</td></tr>'};
- var h='';
- DISC.forEach(function(d){
-  var dt=0,hh='';
-  d[1].forEach(function(c){
-   var js=D.filter(function(j){return j.cat===c&&j.kind!=='prop'});if(!js.length)return;
-   var t=js.reduce(function(a,j){return a+(R[j.id]?R[j.id].vol*j.price:0)},0);hh+=row(c,t);dt+=t});
-  if(hh)h+='<tr class="disc"><td colspan="3">'+esc(d[0])+'</td></tr>'+hh+row('Subtotal '+d[0],dt,'sub');
- });
- var tb=0,up=0,hr=0;D.forEach(function(j){if(j.kind==='prop'||!R[j.id])return;var t=R[j.id].vol*j.price;if(j.tp==='up')up+=t;else if(j.tp==='hr')hr+=t;else tb+=t});h+='<tr class="sg"><td colspan="3">Rincian sistem: terima beres '+rp(tb)+' | upah saja '+rp(up)+' | upah harian '+rp(hr)+'</td></tr>'+row('Subtotal pekerjaan',s,'sub')+row('Overhead dan profit',o)+row('Biaya tak terduga',c)+row('PPN',p)+row('TOTAL RAB',s+o+c+p,'sub');
- $('rekap').innerHTML=h;
- document.querySelectorAll('.kcol').forEach(function(e){e.style.display=k>0?'':'none'});
-}
-function fj(id){return D.filter(function(j){return j.id===id})[0]}
-function setJ(id,k,v){fj(id)[k]=(k==='price')?(parseFloat(v)||0):v;save();render()}
-function setUnit(el,id){var v=el.value;if(v==='__new'){v=newUnit();if(!v){render();return}toast('Satuan '+v+' ditambahkan')}setJ(id,'unit',v)}
-function delJ(id){if(!confirm('Hapus pekerjaan ini beserta rincian hitungnya?'))return;D=D.filter(function(j){return j.id!==id});save();render()}
-function sL(id,i,k,v){
- var l=fj(id).ls[i];
- if(k==='k'){v=v.trim();if(v&&(!/^[A-Za-z_][A-Za-z0-9_]*$/.test(v)||/^L\d+$/.test(v)||own(MF,v.toUpperCase()))){toast('Kode hanya huruf, angka, garis bawah, dan tidak boleh seperti L1 atau SUM');render();return}}
- l[k]=v;save();render();
-}
-function setV(id,i){var j=fj(id);j.ls.forEach(function(l){l.v=0});j.ls[i].v=1;save();render()}
-function addL(id,h){fj(id).ls.push(ln('',h?'':'0','',0,0,h));save();render()}
-function delL(id,i){fj(id).ls.splice(i,1);save();render();toast('Baris dihapus. Periksa acuan L-nomor setelahnya.')}
-function mkLines(t,off){return TP[t][2].map(function(a){return ln(a[0],a[1].replace(/L(\d+)/g,function(_,d){return 'L'+(+d+off)}),a[2],'',a[3])})}
-function tpl(id,sel){
- var t=sel.value;if(!t)return;var j=fj(id),add=mkLines(t,j.ls.length);
- if(add.some(function(l){return l.v}))j.ls.forEach(function(l){l.v=0});
- j.ls=j.ls.concat(add);save();render();
-}
-function refreshFormUnits(sel){$('fUnit').innerHTML=unitOpts(sel||'m²')}
-function fUnitChg(){if($('fUnit').value==='__new'){var u=newUnit();refreshFormUnits(u||TP[$('fTpl').value][1])}}
-function fTplChg(){var t=$('fTpl').value;refreshFormUnits(TP[t][1]);$('fUnit').disabled=(t==='prop')}
-function addItem(e){
- e.preventDefault();var t=$('fTpl').value;
- D.push({id:Date.now(),cat:$('fCat').value,name:$('fName').value,mrk:$('fMk').value,sg:$('fSg').value,lt:$('fLt').value,rg:$('fRg').value,tp:$('fTp').value,prod:$('fProd').value,dm:$('fDm').value,kind:t==='prop'?'prop':'job',unit:$('fUnit').value,price:0,ls:mkLines(t,0)});
- $('fName').value='';$('fMk').value='';$('fRg').value='';$('fProd').value='';$('fDm').value='';save();render();$('fName').focus();
- toast('Pekerjaan ditambahkan. Isi angka di rincian dan harga di tabel.');
+
+  document.getElementById('grandTotalDisplay').innerText = `Rp ${grandTotal.toLocaleString('id-ID')}`;
+  document.getElementById('terbilangDisplay').innerText = terbilang(grandTotal);
 }
 
-function manualSave(){save();toast('Data tersimpan di browser.')}
-function newRab(){
- if(!confirm('Buat RAB baru? Semua data RAB saat ini akan dihapus. Simpan ke Google Drive dulu jika masih diperlukan.'))return;
- try{
-  localStorage.setItem('rabk2_d','[]');
-  localStorage.setItem('rabk2_m',JSON.stringify({docNo:'',title:'',client:'',loc:'',date:new Date().toISOString().slice(0,10),notes:'',ovh:10,ppn:11,kurs:16000,kontrak:'tb',ctg:5,wst:5,ptype:'baru',flr:1,prov:$('prov').value,city:'',mapl:''}));
-  ['rabk2_tm','rabk2_cs','rabk_gdfile'].forEach(function(k){localStorage.removeItem(k)});
- }catch(e){}
- location.reload();
-}
-function saveDrive(){
- save();
- var o={app:'RAB Konstruksi',ver:2,d:D,m:meta(),tm:TM,cs:CS};
- var nm=($('title').value||'RAB').replace(/[^\w\-]+/g,'_').slice(0,40)+'_'+($('date').value||'');
- var a=document.createElement('a');
- a.href=URL.createObjectURL(new Blob([JSON.stringify(o)],{type:'application/json'}));
- a.download='RAB_'+nm+'.json';document.body.appendChild(a);a.click();a.remove();
- toast('Berkas diunduh. Simpan/pindahkan ke folder Google Drive Anda.');
-}
-function openFile(inp){
- var f=inp.files[0];if(!f)return;var r=new FileReader();
- r.onload=function(){try{
-  var o=JSON.parse(r.result);if(!Array.isArray(o.d))throw 0;
-  if(!confirm('Buka berkas ini? Data RAB saat ini akan diganti.'))return;
-  localStorage.setItem('rabk2_d',JSON.stringify(o.d));localStorage.setItem('rabk2_m',JSON.stringify(o.m||{}));
-  localStorage.setItem('rabk2_tm',JSON.stringify(o.tm||[]));localStorage.setItem('rabk2_cs',JSON.stringify(o.cs||{}));
-  location.reload();
- }catch(e){toast('Berkas tidak valid.')}};
- r.readAsText(f);inp.value='';
-}
-function openPrint(){$('pmodal').classList.add('on')}
-function closePrint(){$('pmodal').classList.remove('on')}
-var PK=['proj','rincian','rekap','zrek','jad','kurva','mat','tot','term','sign'];
-var PS={all:PK,none:[],rekap:['proj','rekap','zrek','tot','sign'],rincian:['proj','rincian'],material:['proj','mat']};
-function pset(n){var on=PS[n]||[];Array.prototype.forEach.call(document.querySelectorAll('.pk'),function(c){c.checked=on.indexOf(c.value)>=0})}
-function doPrint(){
- var on=Array.prototype.filter.call(document.querySelectorAll('.pk'),function(c){return c.checked}).map(function(c){return c.value});
- if(!on.length){toast('Centang minimal satu bagian.');return}
- closePrint();save();
- var b=document.body,add=[];
- PK.forEach(function(k){if(on.indexOf(k)<0)add.push('ph-'+k)});
- if(on.indexOf('mat')>=0)add.push('ps-mat');
- if(!$('notes').value.trim())add.push('nonotes');
- add.forEach(function(c){b.classList.add(c)});
- var done=function(){add.forEach(function(c){b.classList.remove(c)});window.removeEventListener('afterprint',done)};
- window.addEventListener('afterprint',done);
- setTimeout(function(){window.print()},50);
-}
-var BR={"Semen":"Gresik,Tiga Roda,Dynamix,Semen Padang,Tonasa,Baturaja,Bosowa,Conch,Merah Putih,Holcim,Andalas,Garuda Putih,Bima,Hippo,Mortar Utama (MU),Sika,Drymix,Mortar Perekat Hebel,Indocement,Semen Indonesia,Semen Kupang,Sika,Mapei,Davco,Fosroc,Dr. Fixit,Bostik","Cat":"Dulux,Jotun,Nippon Paint,Catylac,Avitex,No Drop,Aquaproof,Mowilex,Vinilex,Propan,Emco,Wardona,Sanlex,Decolith,Pilox,Avian Brands,Kansai Paint,Sikkens,Boysen,Danapaint,Weber,Nippon Vinilex,Dulux Catylac,Jotun Jotashield,Mowilex Emulsion,Molto","Besi dan baja":"Krakatau Steel,Master Steel,TASO,Kencana,BlueScope,Gunung Garuda,Putera Baja,Sakti,Bukit Baja,Tata Metal,Jaya Steel,Pelangi Indobaja,Tunggal Jaya,Ispat Indo,Hanwa,Sinar Baja,Bajaringan Fortress,Gajah Tunggal,Cipta Baja,Bluescope Zincalume,Lysaght","Kabel dan listrik":"Supreme,Eterna,Kabelindo,Voksel,Jembo,Tranka,Sucaco,Extrana,Nexans,Prysmian,Schneider,Broco,Panasonic,Clipsal,Legrand,Philips,ABB,Hager,Chint,Lion,Hubbell,Eaton,Siemens,Mitsubishi,Omron,Panasonic Wide,Maspion Elektrik,Uticon","Pipa":"Rucika,Wavin,Vinilon,Maspion,Pralon,Lesso,Langgeng,Rucika Green PPR,Harvel,Onda,Tiga Daun,Pipa Kencana,Bina Pipa,Tigaraksa,Lesso PPR,Sanex,Wavin AW,Wavin Tigris,Ricma,Dura,Hoyoo,GP Pipe","Sanitair dan keramik":"TOTO,American Standard,Roman,INA,Kohler,Duravit,Granito,Niro Granite,Platinum,Arwana,Mulia,Essenza,Asia Tile,Mulia Keramik,Sandimas,Ceramica,Mulia Keramik,Indogress,Garuda Keramik,Milan,Valentino Gress,Pasadena,Kia Keramik,Anta,Aksa,Boen,Massimo,Platinum Tile","Interior":"Taco,Aica,Formica,Doff,Multiplek Meranti,Blum,Hettich,Huben,Grass,Dekkson,Kaiser,Prada,Taco HPL,Armstrong,Panasonic Wood,Tekwood,Multiplek Sengon,Plywood Nusantara,Ayu,Rhino,Dolken,Vita"};
-$('mrkList').innerHTML=Object.keys(BR).map(function(k){return BR[k].split(',').map(function(b){return '<option value="'+b+'" label="'+k+'">'}).join('')}).join('');
-var CAT=[
-[0,"Pembersihan lahan dan perataan","m²","area",""],
-[0,"Pemasangan bouwplank dan pengukuran","m","len","Kayu kaso 5/7:0.35:btg,Papan 2cm:0.15:lbr,Paku:0.02:kg,Benang nilon:0.01:rol"],
-[1,"Galian tanah pondasi","m³","vol",""],
-[1,"Urugan pasir bawah pondasi","m³","vol","Pasir urug:1.2:m³"],
-[1,"Lantai kerja (lean concrete)","m³","vol","Semen PC:5:zak,Pasir beton:0.52:m³,Split:0.78:m³"],
-[1,"Pondasi batu kali 1:5","m³","trap","Batu kali:1.2:m³,Semen PC:3.3:zak,Pasir pasang:0.52:m³"],
-[2,"Beton sloof","m³","vol","Semen PC:7.5:zak,Pasir beton:0.5:m³,Split:0.75:m³,Besi beton:150:kg,Kawat bendrat:2.25:kg,Multiplek 12mm:1.5:lbr,Kaso 4/6:3:btg,Paku:0.8:kg,Minyak bekisting:2:ltr,Tahu beton:20:bh"],
-[2,"Beton kolom","m³","vol","Semen PC:7.5:zak,Pasir beton:0.5:m³,Split:0.75:m³,Besi beton:200:kg,Kawat bendrat:3:kg,Multiplek 12mm:2:lbr,Kaso 4/6:4:btg,Paku:1:kg,Minyak bekisting:2:ltr,Tahu beton:25:bh"],
-[2,"Beton balok","m³","vol","Semen PC:7.5:zak,Pasir beton:0.5:m³,Split:0.75:m³,Besi beton:180:kg,Kawat bendrat:2.7:kg,Multiplek 12mm:2:lbr,Kaso 4/6:4:btg,Paku:1:kg,Minyak bekisting:2:ltr,Tahu beton:25:bh"],
-[2,"Beton plat dak","m²","area","Semen PC:0.9:zak,Pasir beton:0.06:m³,Split:0.09:m³,Besi beton:12:kg,Kawat bendrat:0.2:kg,Multiplek 12mm:0.4:lbr,Kaso 4/6:1.5:btg,Paku:0.1:kg,Tahu beton:4:bh"],
-[3,"Pasangan dinding bata merah 1:4","m²","wall","Bata merah:70:bh,Semen PC:0.23:zak,Pasir pasang:0.043:m³,Kawat ayam penguat:0.05:m"],
-[3,"Pasangan dinding hebel 10 cm","m²","wall","Bata hebel 10cm:8.33:bh,Mortar perekat hebel:4:kg"],
-[3,"Plesteran dinding 1:4","m²","area","Semen PC:0.125:zak,Pasir pasang:0.024:m³"],
-[3,"Acian dinding","m²","area","Semen PC:0.065:zak"],
-[3,"Waterproofing area basah","m²","area","Coating waterproofing:1.5:kg,Fiber mesh:0.1:m"],
-[4,"Rangka atap baja ringan","m²","roof","Baja ringan C75:3.5:m,Reng baja ringan:2.5:m,Sekrup baja ringan:15:bh,Dynabolt:0.1:bh"],
-[4,"Penutup atap genteng metal","m²","roof","Genteng metal:1.1:m²,Sekrup roofing:8:bh"],
-[4,"Plafon gypsum 9 mm","m²","area","Gypsum 9mm:0.35:lbr,Rangka hollow plafon:3:m,Sekrup gypsum:12:bh,Kompon gypsum:0.5:kg,Kain kasa gypsum:0.5:m"],
-[5,"Pasang lantai keramik 60x60","m²","area","Keramik:1.05:m²,Semen instan perekat:5:kg,Semen nat:0.3:kg,Tile spacer:3:bh,Spons:0.01:bh"],
-[5,"Pengecatan dinding (plamir, dasar, 2 lapis)","m²","area","Cat dinding:0.1:kg,Cat dasar:0.07:kg,Plamir:0.3:kg,Amplas:0.05:lbr,Lakban kertas:0.02:rol"],
-[6,"Pasang kusen, pintu, dan engsel","Unit","qty","Dynabolt:8:bh,Busa PU:0.25:kaleng,Sealant silikon:0.3:tube,Sekrup kayu:12:bh,Grease:0.02:kg"],
-[10,"Grounding (batang tembaga)","Titik","qty","Batang grounding:1:bh,Kabel BC 16mm:10:m"],
-[12,"Titik lampu","Titik","qty","Kabel NYM 3x1,5:12:m,Pipa conduit 20mm:1.5:btg,Inbow doos:1:bh,Klem pipa:6:bh,Isolasi listrik:0.1:rol,Cable ties:4:bh"],
-[12,"Saklar","Titik","qty","Kabel NYM 2x1,5:10:m,Pipa conduit 20mm:1.25:btg,Inbow doos:1:bh,Klem pipa:5:bh"],
-[13,"Titik stop kontak","Titik","qty","Kabel NYM 3x2,5:12:m,Pipa conduit 20mm:1.5:btg,Inbow doos:1:bh,Klem pipa:6:bh"],
-[17,"Titik CCTV","Titik","qty","Kabel UTP/koaksial:15:m,Pipa conduit 20mm:1.5:btg,Klem pipa:6:bh"],
-[19,"Panel MCB utama","Set","qty","MCB:1:bh,Box panel:1:bh,Terminal/skun kabel:6:bh"],
-[20,"Instalasi pipa air bersih PPR","m","len","Pipa PPR:0.25:btg,Fitting PPR:0.5:bh,Klem pipa:0.5:bh"],
-[21,"Instalasi pipa air kotor PVC","m","len","Pipa PVC:0.17:btg,Fitting PVC:0.4:bh,Lem pipa PVC:0.01:kaleng,Klem pipa:0.4:bh"],
-[22,"Pasang kloset duduk","Unit","qty","Kloset duduk:1:unit,Sealtape:1:rol,Silikon sealant:0.5:tube,Kran air:1:bh"],
-[22,"Pasang wastafel","Unit","qty","Wastafel:1:unit,Kran wastafel:1:bh,Sealtape:1:rol,Silikon sealant:0.5:tube"],
-[23,"Septic tank biofilter","Unit","qty",""],
-[23,"Sumur resapan","Unit","qty",""],
-[24,"Kitchen set bawah","m","len","Multiplek 18mm:1.5:lbr,HPL:1.2:lbr,Edging:6:m,Engsel:3:bh,Rel laci Blum:1:set"],
-[24,"Kitchen set atas","m","len","Multiplek 18mm:1.2:lbr,HPL:1:lbr,Edging:5:m,Engsel:3:bh"],
-[24,"Lemari pakaian (wardrobe)","m²","area","Multiplek 18mm:0.5:lbr,HPL:0.45:lbr,Edging:2:m,Engsel:0.8:bh,Rel laci:0.3:set"],
-[25,"Backdrop TV","m²","area","Multiplek 18mm:0.4:lbr,HPL:0.4:lbr,Edging:1.5:m"],
-[25,"Partisi ruangan","m²","area","Multiplek 12mm:0.4:lbr,Rangka kaso:2:btg,Sekrup:10:bh,Finishing HPL:0.4:lbr"],
-[0,"Pagar sementara proyek (seng)","m","len","Seng gelombang:0.5:lbr,Kaso 5/7:0.4:btg,Paku:0.03:kg"],
-[0,"Direksi keet dan gudang material","m²","area","Multiplek 12mm:0.5:lbr,Kaso 5/7:1:btg,Seng gelombang:0.4:lbr,Paku:0.1:kg"],
-[1,"Urugan sirtu peninggian peil","m³","vol","Sirtu:1.2:m³"],
-[1,"Pondasi footplat beton","m³","vol","Semen PC:7.5:zak,Pasir beton:0.5:m³,Split:0.75:m³,Besi beton:150:kg,Kawat bendrat:2.25:kg,Multiplek 12mm:1:lbr,Paku:0.5:kg,Tahu beton:15:bh"],
-[2,"Ring balok","m³","vol","Semen PC:7.5:zak,Pasir beton:0.5:m³,Split:0.75:m³,Besi beton:180:kg,Kawat bendrat:2.7:kg,Multiplek 12mm:2:lbr,Kaso 4/6:4:btg,Paku:1:kg,Tahu beton:25:bh"],
-[2,"Tangga beton","m³","vol","Semen PC:7.5:zak,Pasir beton:0.5:m³,Split:0.75:m³,Besi beton:150:kg,Kawat bendrat:2.5:kg,Multiplek 12mm:3:lbr,Kaso 4/6:5:btg,Paku:1:kg"],
-[3,"Kolom praktis dan balok latei","m³","vol","Semen PC:7.5:zak,Pasir beton:0.5:m³,Split:0.75:m³,Besi beton:180:kg,Kawat bendrat:2.7:kg,Multiplek 12mm:2:lbr,Paku:1:kg"],
-[3,"Pasangan batako","m²","wall","Batako:12.5:bh,Semen PC:0.1:zak,Pasir pasang:0.03:m³,Kawat ayam penguat:0.05:m"],
-[3,"Keramik dinding kamar mandi","m²","area","Keramik dinding:1.05:m²,Semen instan perekat:5:kg,Semen nat:0.3:kg,Tile spacer:4:bh"],
-[3,"Pasangan roster / lubang angin","m²","area","Roster:25:bh,Semen PC:0.15:zak,Pasir pasang:0.03:m³"],
-[4,"Rangka plafon hollow","m²","area","Hollow 4x4:2.5:m,Hollow 2x4:2.5:m,Sekrup rangka:8:bh,Dynabolt:0.5:bh"],
-[4,"Plafon PVC","m²","area","Panel PVC:0.4:lbr,Rangka hollow plafon:3:m,Sekrup:10:bh,List PVC:0.4:m"],
-[4,"Talang dan lisplang","m","len","Talang galvalum:1.05:m,Lisplang GRC:0.4:lbr,Sekrup:6:bh,Sealant silikon:0.1:tube"],
-[4,"Bubungan dan nok atap","m","len","Nok genteng metal:1.05:m,Sekrup roofing:4:bh,Sealant:0.1:tube"],
-[4,"Waterproofing plat dak","m²","area","Coating waterproofing:2:kg,Fiber mesh:0.2:m,Semen PC:0.05:zak"],
-[5,"Pasang lantai granit 60x60","m²","area","Granit tile:1.05:m²,Semen instan perekat:5:kg,Semen nat:0.3:kg,Tile spacer:3:bh"],
-[5,"Plint keramik","m","len","Plint keramik:1.05:m,Semen instan perekat:0.3:kg,Semen nat:0.02:kg"],
-[5,"Pengecatan plafon","m²","area","Cat plafon:0.08:kg,Plamir:0.25:kg,Amplas:0.04:lbr"],
-[5,"Pengecatan eksterior","m²","area","Cat eksterior:0.12:kg,Cat dasar alkali:0.08:kg,Plamir:0.3:kg,Amplas:0.05:lbr"],
-[5,"Pengecatan kayu dan besi","m²","area","Cat kayu/besi:0.15:kg,Meni/cat dasar:0.1:kg,Thinner:0.05:ltr,Amplas:0.1:lbr"],
-[6,"Pasang jendela aluminium","Unit","qty","Dynabolt:8:bh,Busa PU:0.25:kaleng,Sealant silikon:1:tube,Sekrup:12:bh"],
-[6,"Pasang pintu kamar mandi PVC","Unit","qty","Dynabolt:6:bh,Busa PU:0.25:kaleng,Sealant silikon:0.5:tube"],
-[7,"Pembersihan akhir dan serah terima","m²","area","Lap/sabun pembersih:0.02:ltr"],
-[12,"Pemasangan lampu hias dan fitting","Titik","qty",""],
-[7,"Teralis jendela besi hollow","m²","area","Besi hollow 2x2:6:m,Cat besi:0.15:kg,Las/elektroda:0.1:kg"],
-[9,"Pagar besi","m","len","Besi hollow 4x4:3:m,Besi hollow 2x2:5:m,Cat besi:0.4:kg,Elektroda las:0.2:kg"],
-[9,"Pagar bata atau batako","m","len","Bata merah:200:bh,Semen PC:0.8:zak,Pasir pasang:0.14:m³"],
-[9,"Saluran drainase keliling","m","len","Bata merah:100:bh,Semen PC:0.6:zak,Pasir pasang:0.12:m³"],
-[9,"Paving block halaman","m²","area","Paving block:1.05:m²,Pasir urug:0.06:m³,Pasir kunci:0.01:m³"],
-[4,"Carport dan kanopi baja ringan","m²","area","Baja ringan C75:3:m,Reng baja ringan:2:m,Sekrup baja ringan:12:bh,Atap polycarbonate:1.1:m²"],
-[4,"Rangka atap kayu","m²","roof","Kayu kaso 5/10:3:btg,Kayu reng 3/4:3:btg,Paku:0.2:kg,Besi plat sambungan:0.2:kg"],
-[6,"Rumah kunci dan perlengkapan pintu","Unit","qty","Kunci pintu:1:set,Engsel:3:bh,Hak angin:1:bh"],
-[11,"Penangkal petir (finial dan kabel)","Titik","qty","Finial:1:bh,Kabel BC 50mm:15:m,Klem kabel:8:bh"],
-[14,"Titik telepon dan data (LAN)","Titik","qty","Kabel UTP Cat6:12:m,Pipa conduit 20mm:1.5:btg,Inbow doos:1:bh,Klem pipa:6:bh"],
-[16,"Detektor asap dan alarm kebakaran","Titik","qty","Kabel alarm:12:m,Pipa conduit 20mm:1.5:btg,Klem pipa:6:bh"],
-[18,"Instalasi kabel AC","Titik","qty","Kabel NYM 3x2,5:12:m,Pipa conduit 20mm:2:btg,Klem pipa:8:bh,Breaker khusus AC:1:bh"],
-[22,"Pasang kran dan floor drain","Unit","qty","Kran air:1:bh,Floor drain:1:bh,Sealtape:1:rol,Lem pipa PVC:0.01:kaleng"],
-[22,"Pasang shower set","Unit","qty","Shower set:1:set,Sealtape:1:rol,Silikon sealant:0.3:tube"],
-[23,"Instalasi pompa air dan toren","Paket","qty","Pompa air:1:unit,Toren air:1:unit,Pipa PPR:2:btg,Fitting PPR:6:bh,Sealtape:2:rol"],
-[24,"Kabinet TV dan rak dinding","m","len","Multiplek 18mm:0.8:lbr,HPL:0.7:lbr,Edging:4:m,Engsel:2:bh"],
-[24,"Meja kerja custom","m","len","Multiplek 18mm:0.8:lbr,HPL:0.7:lbr,Edging:4:m,Rel laci:0.5:set"],
-[25,"Plafon dekoratif (drop ceiling)","m²","area","Gypsum 9mm:0.4:lbr,Rangka hollow plafon:3:m,Sekrup gypsum:14:bh,Kompon gypsum:0.6:kg,Lampu LED strip:0.5:m"],
-[25,"Wallpanel dan pelapis dinding","m²","area","Wallpanel:0.35:lbr,Lem kayu:0.3:kg,Sekrup:6:bh"]
-];
-CAT=CAT.map(function(c,i){return[c,i]}).sort(function(a,b){return a[0][0]-b[0][0]||a[1]-b[1]}).map(function(x){return x[0]});
-var catSel={};
-function openCat(){catSel={};renderCat();$('cq').value='';$('cmodal').classList.add('on')}
-function closeCat(){$('cmodal').classList.remove('on')}
-function renderCat(){var h='',last=-1;CAT.forEach(function(c,i){if(c[0]!==last){last=c[0];h+='<div class="cg" data-g="1" style="font-weight:700;margin:8px 0 2px">'+esc(CATS[c[0]])+'</div>'}
- h+='<label class="ci" style="display:flex;gap:8px;align-items:center;font-size:14px;color:var(--ink);margin:0;padding:3px 0"><input type="checkbox" style="width:auto" onchange="catSel['+i+']=this.checked;catCount()"> '+esc(c[1])+' <span class="fx">('+esc(c[2])+')</span></label>'});
- $('clist').innerHTML=h;catCount()}
-function catCount(){$('cn').textContent=Object.keys(catSel).filter(function(k){return catSel[k]}).length}
-function catFilter(){var q=$('cq').value.toLowerCase();Array.prototype.forEach.call($('clist').querySelectorAll('.ci'),function(e){e.style.display=e.textContent.toLowerCase().indexOf(q)<0?'none':'flex'})}
-function catAll(v){Array.prototype.forEach.call($('clist').querySelectorAll('.ci'),function(e){if(e.style.display==='none')return;var cb=e.querySelector('input');if(!v||!$('cq').value)cb.checked=v;if(v)cb.checked=true;cb.onchange()});catCount()}
-function addCat(){
- var ks=Object.keys(catSel).filter(function(k){return catSel[k]});if(!ks.length){toast('Belum ada yang dicentang.');return}
- ks.forEach(function(k,n){var c=CAT[k];
-  D.push({id:Date.now()+n,cat:CATS[c[0]],name:c[1],mrk:'',sg:'',lt:$('fLt').value,rg:'',tp:$('kontrak').value,prod:'',dm:'',kind:'job',unit:c[2],price:0,ls:mkLines(c[3],0),
-   mt:c[4]?c[4].split(',').map(function(m){var p=m.split(':');return{n:p[0],k:p[1].replace('.',','),u:p[2]}}):[]})});
- save();render();closeCat();toast(ks.length+' pekerjaan dimasukkan. Isi volume dan harga di tabel.');
+function updateItemField(idx, field, val) {
+  projects[activeProjectKey].items[idx][field] = field === 'vol' || field === 'price' ? parseFloat(val) || 0 : val;
+  if(field === 'vol' || field === 'price') renderItems();
+  autoSave();
 }
 
-var GD={tok:null,exp:0,t:0};
-function gdMsg(t){$('gdst').textContent=t}
-function openDrive(){$('gdid').value=localStorage.getItem('rabk_gdid')||'';$('gdauto').checked=localStorage.getItem('rabk_gdauto')==='1';gdMsg(localStorage.getItem('rabk_gdfile')?'Terhubung ke berkas Drive. Simpan berikutnya menimpa berkas yang sama.':'');$('gdlist').innerHTML='';$('dmodal').classList.add('on')}
-function gdSaveId(){try{localStorage.setItem('rabk_gdid',$('gdid').value.trim());localStorage.setItem('rabk_gdauto',$('gdauto').checked?'1':'0')}catch(e){}}
-function gdAuth(cb,silent){
- if(GD.tok&&Date.now()<GD.exp)return cb(GD.tok);
- if(silent)return;
- var id=(localStorage.getItem('rabk_gdid')||'').trim();if(!id){gdMsg('Isi Client ID dulu.');return}
- if(location.protocol==='file:'){gdMsg('Tidak bisa dari file:// . Buka lewat hosting atau localhost.');return}
- var go=function(){google.accounts.oauth2.initTokenClient({client_id:id,scope:'https://www.googleapis.com/auth/drive.file',callback:function(r){
-  if(r.error){gdMsg('Gagal masuk: '+r.error);return}GD.tok=r.access_token;GD.exp=Date.now()+(r.expires_in-60)*1000;cb(GD.tok)}}).requestAccessToken()};
- if(window.google&&google.accounts)return go();
- var sc=document.createElement('script');sc.src='https://accounts.google.com/gsi/client';sc.onload=go;sc.onerror=function(){gdMsg('Gagal memuat layanan Google (cek internet).')};document.head.appendChild(sc);
-}
-function pack(){return JSON.stringify({app:'RAB Konstruksi',ver:2,d:D,m:meta(),tm:TM,cs:CS})}
-function gdSave(silent){
- save();gdSaveId();
- gdAuth(function(tok){
-  var fid=localStorage.getItem('rabk_gdfile'),nm='RAB_'+(($('title').value||'Proyek').replace(/[^\w\-]+/g,'_').slice(0,40))+'.json',url,m,body,h={Authorization:'Bearer '+tok};
-  if(fid){url='https://www.googleapis.com/upload/drive/v3/files/'+fid+'?uploadType=media';m='PATCH';body=pack();h['Content-Type']='application/json'}
-  else{url='https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id';m='POST';
-   body='--rabb\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n'+JSON.stringify({name:nm,mimeType:'application/json'})+'\r\n--rabb\r\nContent-Type: application/json\r\n\r\n'+pack()+'\r\n--rabb--';h['Content-Type']='multipart/related; boundary=rabb'}
-  if(!silent)gdMsg('Menyimpan...');
-  fetch(url,{method:m,headers:h,body:body}).then(function(r){
-   if(r.status===404&&fid){localStorage.removeItem('rabk_gdfile');return gdSave(silent)}
-   if(!r.ok)throw new Error(r.status);return r.json()}).then(function(j){if(!j)return;if(j.id)localStorage.setItem('rabk_gdfile',j.id);var t=new Date().toLocaleTimeString('id-ID');gdMsg('Tersimpan di Google Drive pukul '+t+'.');if(!silent)toast('Tersimpan ke Google Drive.')})
-  .catch(function(e){gdMsg('Gagal menyimpan ('+e.message+'). Cek Client ID dan origin.')});
- },silent);
-}
-function gdList(){
- gdAuth(function(tok){gdMsg('Memuat daftar...');
-  fetch('https://www.googleapis.com/drive/v3/files?pageSize=15&orderBy=modifiedTime%20desc&fields=files(id,name,modifiedTime)&q='+encodeURIComponent("mimeType='application/json' and trashed=false"),{headers:{Authorization:'Bearer '+tok}})
-  .then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).then(function(j){
-   var f=j.files||[];gdMsg(f.length?'Pilih berkas:':'Belum ada berkas RAB di Drive.');
-   $('gdlist').innerHTML=f.map(function(x){return '<button class="opt" style="display:block;width:100%;text-align:left;margin-bottom:4px" onclick="gdOpen(\''+x.id+'\')">'+esc(x.name)+'<small style="display:block;font-weight:400;color:var(--mute)">'+new Date(x.modifiedTime).toLocaleString('id-ID')+'</small></button>'}).join('')})
-  .catch(function(e){gdMsg('Gagal memuat ('+e.message+').')})});
-}
-function gdOpen(id){
- gdAuth(function(tok){fetch('https://www.googleapis.com/drive/v3/files/'+id+'?alt=media',{headers:{Authorization:'Bearer '+tok}})
-  .then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).then(function(o){
-   if(!Array.isArray(o.d))throw new Error('format');
-   if(!confirm('Buka berkas ini? Data RAB saat ini akan diganti.'))return;
-   localStorage.setItem('rabk_gdfile',id);
-   localStorage.setItem('rabk2_d',JSON.stringify(o.d));localStorage.setItem('rabk2_m',JSON.stringify(o.m||{}));
-   localStorage.setItem('rabk2_tm',JSON.stringify(o.tm||[]));localStorage.setItem('rabk2_cs',JSON.stringify(o.cs||{}));location.reload()})
-  .catch(function(e){gdMsg('Gagal membuka ('+e.message+').')})});
-}
-var _sv=save;save=function(){_sv();if(localStorage.getItem('rabk_gdauto')==='1'&&localStorage.getItem('rabk_gdfile')){clearTimeout(GD.t);GD.t=setTimeout(function(){gdSave(true)},5000)}};
-
-function terbilang(n){
- n=Math.round(Math.abs(Number(n)||0));if(n===0)return 'Nol Rupiah';
- var a=['','Satu','Dua','Tiga','Empat','Lima','Enam','Tujuh','Delapan','Sembilan','Sepuluh','Sebelas'];
- function t(x){
-  if(x<12)return a[x];
-  if(x<20)return t(x-10)+' Belas';
-  if(x<100)return t(Math.floor(x/10))+' Puluh'+(x%10?' '+t(x%10):'');
-  if(x<200)return 'Seratus'+(x>100?' '+t(x-100):'');
-  if(x<1000)return t(Math.floor(x/100))+' Ratus'+(x%100?' '+t(x%100):'');
-  if(x<2000)return 'Seribu'+(x>1000?' '+t(x-1000):'');
-  if(x<1e6)return t(Math.floor(x/1e3))+' Ribu'+(x%1e3?' '+t(x%1e3):'');
-  if(x<1e9)return t(Math.floor(x/1e6))+' Juta'+(x%1e6?' '+t(x%1e6):'');
-  if(x<1e12)return t(Math.floor(x/1e9))+' Miliar'+(x%1e9?' '+t(x%1e9):'');
-  return t(Math.floor(x/1e12))+' Triliun'+(x%1e12?' '+t(x%1e12):'');
- }
- return t(n).replace(/\s+/g,' ').trim()+' Rupiah';
+function applyTemplate(idx) {
+  let type = document.getElementById(`tmpl-${idx}`).value;
+  if(!type) return;
+  let item = projects[activeProjectKey].items[idx];
+  if(type === 'luas') {
+    item.rows = [
+      { code: 'L1', label: 'Panjang', val: '10' },
+      { code: 'L2', label: 'Lebar', val: '5' },
+      { code: 'L3', label: 'Luas (L1*L2)', val: 'L1*L2', isRes: true }
+    ];
+    item.vol = 50;
+  } else if(type === 'volume') {
+    item.rows = [
+      { code: 'L1', label: 'Panjang', val: '10' },
+      { code: 'L2', label: 'Lebar', val: '5' },
+      { code: 'L3', label: 'Tinggi', val: '3' },
+      { code: 'L4', label: 'Volume (L1*L2*L3)', val: 'L1*L2*L3', isRes: true }
+    ];
+    item.vol = 150;
+  }
+  renderItems();
+  autoSave();
 }
 
-function pvClean(){Array.prototype.forEach.call(document.querySelectorAll('.pv'),function(e){e.remove()});Array.prototype.forEach.call(document.querySelectorAll('.pvh'),function(e){e.classList.remove('pvh')})}
-function pvMake(){pvClean();Array.prototype.forEach.call(document.querySelectorAll('main input,main textarea,main select'),function(e){
- if(e.type==='checkbox'||e.type==='radio'||e.type==='file'||e.type==='hidden'||e.type==='button')return;
- var v=e.tagName==='SELECT'?(e.selectedOptions[0]?e.selectedOptions[0].text:''):e.value;
- if(e.type==='date'&&v){var d=v.split('-');if(d.length===3)v=d[2]+'-'+d[1]+'-'+d[0]}
- e.classList.add('pvh');if(!v)return;
- var sp=document.createElement('span');sp.className='pv';sp.textContent=v;e.insertAdjacentElement('afterend',sp)})}
-window.addEventListener('beforeprint',pvMake);window.addEventListener('afterprint',pvClean);
-function resetAll(){if(confirm('Kosongkan semua pekerjaan RAB?')){D=[];save();render()}}
+function renderSubRows(idx) {
+  let box = document.getElementById(`subcalc-${idx}`);
+  let item = projects[activeProjectKey].items[idx];
+  if(!item.rows || item.rows.length === 0) {
+    box.style.display = 'none';
+    return;
+  }
+  box.style.display = 'block';
+  box.innerHTML = item.rows.map((r, rIdx) => `
+    <div class="calc-row">
+      <span class="calc-code">${r.code}</span>
+      <input type="text" value="${r.label}" class="calc-label" oninput="updateSubRow(${idx}, ${rIdx}, 'label', this.value)">
+      <input type="text" value="${r.val}" class="calc-val" oninput="updateSubRow(${idx}, ${rIdx}, 'val', this.value)">
+      <span class="calc-res">${r.isRes ? '= Hasil' : ''}</span>
+    </div>
+  `).join('');
+}
 
-$('fCat').innerHTML=DISC.map(function(d){return '<optgroup label="'+d[0]+'">'+d[1].map(function(c){return '<option>'+c+'</option>'}).join('')+'</optgroup>'}).join('');
-$('fTpl').innerHTML=Object.keys(TP).map(function(k){return '<option value="'+k+'">'+TP[k][0]+'</option>'}).join('');
-$('prov').innerHTML=PROV.map(function(p){return '<option>'+p+'</option>'}).join('');$('cityList').innerHTML=['Palembang','Prabumulih','Pagar Alam','Lubuklinggau','Banyuasin','Ogan Ilir','Ogan Komering Ilir','Ogan Komering Ulu','Muara Enim','Lahat','Musi Banyuasin','Musi Rawas'].map(function(c){return '<option>'+c+'</option>'}).join('');
-load();$('fLt').innerHTML=znOpts('');$('fTp').value=$('kontrak').value;fTplChg();
-['docNo','title','client','loc','date','notes','ovh','ppn','kurs','kontrak','buf','hb','prov','city','mapl','ctg','wst'].forEach(function(i){$(i).addEventListener('input',sum)});
-render();
+function updateSubRow(itemIdx, rowIdx, field, val) {
+  projects[activeProjectKey].items[itemIdx].rows[rowIdx][field] = val;
+  autoSave();
+}
+
+function autoSave() {
+  let p = projects[activeProjectKey];
+  p.name = document.getElementById('pName').value;
+  p.loc = document.getElementById('pLoc').value;
+  p.client = document.getElementById('pClient').value;
+  p.year = document.getElementById('pYear').value;
+  p.notes = document.getElementById('pNotes').value;
+  localStorage.setItem('rab_multi_projects', JSON.stringify(projects));
+}
+
+function saveData() {
+  autoSave();
+  alert("Data proyek berhasil disimpan ke memori browser!");
+}
+
+function toggleDarkMode() {
+  let html = document.documentElement;
+  let isDark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  document.getElementById('modeText').innerText = isDark ? 'Dark Mode' : 'Light Mode';
+}
+
+initProjects();
 </script>
 </body>
 </html>
